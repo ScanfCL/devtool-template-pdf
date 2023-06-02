@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice</title>
+    <style>
+      html {
+        background: black;
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @font-face {
+        font-family: Inter;
+        src: url("{{{fontInter}}}") format("truetype");
+      }
+
+      @font-face {
+        font-family: InterBold;
+        src: url("{{{fontInterBold}}}") format("truetype");
+      }
+
+      @font-face {
+        font-family: InterSemiBold;
+        src: url("{{{fontInterSemiBold}}}") format("truetype");
+      }
+
+      @font-face {
+        font-family: InterMedium;
+        src: url("{{{fontInterMedium}}}") format("truetype");
+      }
+
+      .font-inter {
+        font-family: Inter;
+      }
+
+      .font-inter-bold {
+        font-family: InterBold;
+      }
+
+      .font-inter-semibold {
+        font-family: InterSemiBold;
+      }
+
+      .font-inter-medium {
+        font-family: InterMedium;
+      }
+
+      body {
+        background: white;
+        width: 21cm;
+        /* height: 29.7cm; */
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 100%;
+        min-height: 29.7cm;
+      }
+
+      .proforma-type {
+        text-align: right;
+        font-size: 28px;
+        vertical-align: baseline;
+        color: #274b8c;
+        white-space: nowrap;
+      }
+
+      .information {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        margin-bottom: 8px;
+        font-family: InterSemibold;
+        font-size: 12px;
+      }
+
+      .label {
+        text-align: right;
+        grid-column: span 2 / span 2;
+      }
+
+      .semicolon {
+        text-align: center;
+        grid-column: span 1 / span 1;
+      }
+
+      .data {
+        grid-column: span 4 / span 4;
+      }
+
+      .note-and-instruction {
+        padding: 16px;
+        border: 1px solid black;
+        max-width: 250px;
+      }
+
+      .note-and-instruction-child {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        font-size: 8px !important;
+        margin-bottom: 4px;
+      }
+
+      .note-underline {
+        width: 100px;
+        border-bottom: 2px solid gray;
+        grid-column: span 2 / span 2;
+      }
+
+      .freight-detail > td > table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+
+      .freight-detail > td > table > tbody > tr > th {
+        border: 1px solid black;
+        padding: 4px;
+      }
+
+      .freight-detail > td > table > tbody > tr > td {
+        border: 1px solid black;
+        padding: 4px;
+      }
+
+      .item-table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        border: 0.5px solid rgb(167, 167, 167);
+      }
+
+      .item-table > thead > tr > th {
+        border: 0.5px solid rgb(167, 167, 167);
+        padding: 4px;
+      }
+
+      .item-table > tbody > tr > td {
+        padding: 4px;
+      }
+
+      .invoice-no {
+        text-align: left;
+        font-size: 20px;
+        padding-left: 16px;
+        padding-top: 16px;
+        white-space: nowrap;
+      }
+
+      .product-image {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        background-color: rgb(224, 224, 224);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="container">
+      <thead>
+        <tr>
+          <th class="invoice-no">
+            Invoice No :
+            <span class="font-inter" style="color: #274b8c"
+              >IVPL22110000001EXP</span
+            >
+          </th>
+          <th
+            rowspan="3"
+            class="font-inter-semibold proforma-type"
+            style="padding-right: 16px; padding-top: 16px"
+          >
+            INVOICE / PACKING LIST
+          </th>
+        </tr>
+        <tr>
+          <th style="text-align: left; font-size: 20px; padding-left: 16px">
+            Date :
+            <span class="font-inter" style="color: #274b8c"
+              >IVPL22110000001EXP</span
+            >
+          </th>
+        </tr>
+        <tr style="margin-bottom: 16px">
+          <th style="text-align: left; font-size: 20px; padding-left: 16px">
+            Job No :
+            <span class="font-inter" style="color: #274b8c"
+              >IVPL22110000001EXP</span
+            >
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0 24px">
+            <div style="width: 100%">
+              <div
+                class="font-inter-bold"
+                style="font-size: 16px; margin-bottom: 8px"
+              >
+                Shipper
+              </div>
+              <div class="information">
+                <div class="label">Name</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Address</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">City</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Zip Code</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Country</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Tel</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Email</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Contract</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0 24px">
+            <div style="width: 100%">
+              <div
+                class="font-inter-bold"
+                style="font-size: 16px; margin-bottom: 8px"
+              >
+                Consignee
+              </div>
+              <div class="information">
+                <div class="label">Name</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Address</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">City</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Zip Code</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Country</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Tel</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Email</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+              <div class="information">
+                <div class="label">Contract</div>
+                <div class="semicolon">:</div>
+                <div class="data">CPL Inter</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="freight-detail">
+          <td colspan="2" style="padding: 16px">
+            <table class="font-inter" style="width: 100%; margin-top: 8px">
+              <tr>
+                <th>FREIGHT TYPE</th>
+                <th>FREIGHT TERMS</th>
+                <th>ORIGINAL</th>
+                <th>DESTINATION</th>
+              </tr>
+              <tr>
+                <td style="text-align: center">SEA FREIGHT (FCL) (SF)</td>
+                <td style="text-align: center">FOB</td>
+                <td style="text-align: center">ฺBANGKOK / THAILAND</td>
+                <td style="text-align: center">HACHINOHE / JAPAN</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding: 0 16px">
+            <table
+              class="font-inter item-table"
+              style="width: 100%; margin-top: 8px"
+            >
+              <thead>
+                {{#if (isIncludes 'DescriptionEN' 'DescriptionTH'
+                shownColumns)}}
+                <tr>
+                  <th rowspan="2">No.</th>
+                  <th colspan="2">DESCRIPTION</th>
+                  {{#each columns}} {{#unless (equalTo col 'DescriptionEN'
+                  'DescriptionTH')}} {{#if (equalTo col 'TotalPrice')}}
+                  <th rowspan="2" style="background-color: rgb(209, 209, 209)">
+                    {{title}}
+                  </th>
+
+                  {{else}}
+                  <th rowspan="2">{{title}}</th>
+                  {{/if}} {{/unless}} {{/each}}
+                </tr>
+                <tr>
+                  <th>PRODUCT NAME (EN)</th>
+                  <th>PRODUCT NAME (TH)</th>
+                </tr>
+                {{else}}
+
+                <tr>
+                  <th>No.</th>
+                  {{#each columns}}
+                  <th>{{title}}</th>
+                  {{/each}}
+                </tr>
+
+                {{/if}}
+              </thead>
+              <tbody>
+                {{#each items}}
+                <tr>
+                  <td>{{no}}</td>
+                  {{#each ../columns}} {{#if (equalTo key 'totalPrice')}}
+                  <td style="background-color: rgb(209, 209, 209)">
+                    {{lookup ../this key}}
+                  </td>
+                  {{else if (equalTo key 'photoUrl')}}
+                  <td class="text-center">
+                    {{#if (hasValue photoUrl)}}
+                    <img
+                      src="{{lookup ../this key}}"
+                      alt="product"
+                      class="product-image"
+                    />
+                    {{else}} - {{/if}}
+                  </td>
+                  {{else}}
+                  <td class="text-center">
+                    {{#if (hasValue (lookup ../this key) )}} {{lookup ../this
+                    key}} {{else}} - {{/if}}
+                  </td>
+                  {{/if}} {{/each}}
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot style="margin-bottom: 24px">
+        <tr>
+          <td style="padding: 16px">
+            <div class="note-and-instruction">
+              <div
+                class="font-inter-semibold"
+                style="margin-bottom: 16px; text-align: center; font-size: 16px"
+              >
+                NOTES AND INSTRUCTION
+              </div>
+              <div class="font-inter note-and-instruction-child">
+                <div style="text-align: right; grid-column: span 2 / span 2">
+                  Net Weight :
+                </div>
+                <div class="note-underline"></div>
+                <div>KGS</div>
+              </div>
+              <div class="font-inter note-and-instruction-child">
+                <div style="text-align: right; grid-column: span 2 / span 2">
+                  Gross Weight :
+                </div>
+                <div class="note-underline"></div>
+                <div>KGS</div>
+              </div>
+              <div class="font-inter note-and-instruction-child">
+                <div style="text-align: right; grid-column: span 2 / span 2">
+                  Total of Package(s) :
+                </div>
+                <div class="note-underline"></div>
+                <div>KGS</div>
+              </div>
+              <div class="font-inter note-and-instruction-child">
+                <div style="text-align: right; grid-column: span 2 / span 2">
+                  Measurement :
+                </div>
+                <div class="note-underline"></div>
+                <div>KGS</div>
+              </div>
+              <div class="font-inter note-and-instruction-child">
+                <div style="text-align: right; grid-column: span 2 / span 2">
+                  Remark :
+                </div>
+                <div class="note-underline"></div>
+                <div></div>
+              </div>
+              <div
+                class="font-inter note-and-instruction-child"
+                style="margin-top: 16px"
+              >
+                <div style="text-align: right; grid-column: span 2 / span 2">
+                  Country of Origin :
+                </div>
+                <div style="width: 100px; border-bottom: 2px solid gray"></div>
+                <div></div>
+              </div>
+            </div>
+          </td>
+          <td style="text-align: left; padding: 16px">
+            <div style="width: 100%; display: grid">
+              <div style="width: 300px; justify-self: self-end">
+                <div
+                  style="
+                    display: grid;
+                    padding: 8px 0;
+                    grid-template-columns: repeat(6, minmax(0, 1fr));
+                    column-gap: 8px;
+                    row-gap: 8px;
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                  "
+                >
+                  <div
+                    class="font-inter-bold"
+                    style="text-align: right; grid-column: span 2 / span 2"
+                  >
+                    SHIP TO:
+                  </div>
+                  <div class="font-inter" style="grid-column: span 4 / span 4">
+                    NO 1 TAMPINES NORTH DRIVE 3 , #03-06 BHCC SPACE 528499
+                    SINGAPORE
+                  </div>
+                  <div
+                    class="font-inter-bold"
+                    style="text-align: right; grid-column: span 2 / span 2"
+                  >
+                    DESTINATION:
+                  </div>
+                  <div class="font-inter" style="grid-column: span 4 / span 4">
+                    SINGAPORE
+                  </div>
+                  <div
+                    class="font-inter-bold"
+                    style="text-align: right; grid-column: span 2 / span 2"
+                  >
+                    CONTACT:
+                  </div>
+                  <div class="font-inter" style="grid-column: span 4 / span 4">
+                    TEST JA
+                  </div>
+                  <div
+                    class="font-inter-bold"
+                    style="text-align: right; grid-column: span 2 / span 2"
+                  >
+                    TEL:
+                  </div>
+                  <div class="font-inter" style="grid-column: span 4 / span 4">
+                    00973 34147404
+                  </div>
+                  <div
+                    class="font-inter-bold"
+                    style="text-align: right; grid-column: span 2 / span 2"
+                  >
+                    ADDITIONAL1:
+                  </div>
+                  <div class="font-inter" style="grid-column: span 4 / span 4">
+                    Add1
+                  </div>
+                  <div
+                    class="font-inter-bold"
+                    style="text-align: right; grid-column: span 2 / span 2"
+                  >
+                    ADDITIONAL2:
+                  </div>
+                  <div class="font-inter" style="grid-column: span 4 / span 4">
+                    Add2
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice</title>
+    <style>
+      html {
+        background: black;
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @font-face {
+        font-family: Inter;
+        src: url("{{{fontInter}}}") format("truetype");
+      }
+
+      @font-face {
+        font-family: InterBold;
+        src: url("{{{fontInterBold}}}") format("truetype");
+      }
+
+      @font-face {
+        font-family: InterSemiBold;
+        src: url("{{{fontInterSemiBold}}}") format("truetype");
+      }
+
+      @font-face {
+        font-family: InterMedium;
+        src: url("{{{fontInterMedium}}}") format("truetype");
+      }
+
+      .font-inter {
+        font-family: Inter;
+      }
+
+      .font-inter-bold {
+        font-family: InterBold;
+      }
+
+      .font-inter-semibold {
+        font-family: InterSemiBold;
+      }
+
+      .font-inter-medium {
+        font-family: InterMedium;
+      }
+
+      body {
+        background: white;
+        width: 21cm;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        position: relative;
+        padding: 12px;
+        width: 10cm;
+        height: 7.5cm;
+        max-height: 7.5cm;
+        border: 1px solid whitesmoke;
+      }
+
+      .container:nth-child(3n) {
+        margin-bottom: 300px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+
+      .qrcode {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 100px;
+        height: 100px;
+        background: black;
+      }
+
+      .wrapper-header {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    {{#each packages}}
+    <div class="container">
+      <div class="wrapper-header">
+        <img class="logo" src="{{{imageLogo}}}" />
+        <img class="qrcode" src="{{{qrCode}}}" />
+      </div>
+      <div
+        style="
+          padding-left: 12px;
+          padding-bottom: 12px;
+          border-bottom: 2px solid black;
+        "
+      >
+        <div class="font-inter-bold" style="font-size: 12px">RFE no.:</div>
+        <div class="font-inter-bold" style="font-size: 20px">
+          {{{freightNo}}}
+        </div>
+        <div>
+          <span class="font-inter-bold" style="font-size: 12px"
+            >Shipment by:</span
+          >
+          <span class="font-inter-medium" style="font-size: 12px"
+            >{{serviceTransport}}</span
+          >
+        </div>
+      </div>
+      <div
+        style="
+          padding: 10px 0px;
+          max-height: 90px;
+          border-bottom: 2px solid black;
+          height: 50px;
+        "
+      >
+        <div style="display: flex">
+          <img
+            src="{{{imageServiceTransport}}}"
+            style="width: 50px; height: 50px; margin-right: 14px"
+          />
+          <div>
+            <div class="font-inter-bold" style="font-size: 18px">
+              {{{symbolTypeShippingMark}}}
+            </div>
+            <div style="font-size: 10px; margin-top: 4px">
+              {{{descriptionShippingMark}}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          height: 48px;
+        "
+      >
+        <div
+          style="
+            grid-column: span 2 / span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-right: 2px solid black;
+          "
+        >
+          <div
+            class="font-inter-bold"
+            style="font-size: 12px; margin-bottom: 4px"
+          >
+            PACKAGE NO.:
+          </div>
+          <div class="font-inter-bold" style="font-size: 18px">
+            {{itemNo}} OF {{{totalPackages}}}
+          </div>
+        </div>
+        <div
+          style="
+            grid-column: span 3 / span 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            padding-left: 18px;
+          "
+        >
+          <div style="margin-bottom: 10px">
+            <span
+              class="font-inter-bold"
+              style="font-size: 12px; margin-right: 10px"
+              >WEIGHT:</span
+            ><span class="font-inter-medium" style="font-size: 10px"
+              >{{weight}} kgs</span
+            >
+          </div>
+          <div>
+            <span
+              class="font-inter-bold"
+              style="font-size: 12px; margin-right: 10px"
+              >SIZE:</span
+            ><span class="font-inter-medium" style="font-size: 10px"
+              >W{{width}} L{{length}} H{{height}} cm</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </body>
+</html>

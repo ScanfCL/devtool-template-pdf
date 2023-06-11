@@ -151,6 +151,7 @@
       }
 
       .product-image {
+        object-fit: scale-down;
         width: 100px;
         height: 100px;
         min-width: 100px;
@@ -169,32 +170,26 @@
         <tr>
           <th class="invoice-no">
             Invoice No :
-            <span class="font-inter" style="color: #274b8c"
-              >IVPL22110000001EXP</span
-            >
+            <span class="font-inter" style="color: #274b8c">{{invoiceNo}}</span>
           </th>
           <th
             rowspan="3"
             class="font-inter-semibold proforma-type"
             style="padding-right: 16px; padding-top: 16px"
           >
-            INVOICE / PACKING LIST
+            {{proformaInvoiceType}}
           </th>
         </tr>
         <tr>
           <th style="text-align: left; font-size: 20px; padding-left: 16px">
             Date :
-            <span class="font-inter" style="color: #274b8c"
-              >IVPL22110000001EXP</span
-            >
+            <span class="font-inter" style="color: #274b8c">{{date}}</span>
           </th>
         </tr>
         <tr style="margin-bottom: 16px">
           <th style="text-align: left; font-size: 20px; padding-left: 16px">
             Job No :
-            <span class="font-inter" style="color: #274b8c"
-              >IVPL22110000001EXP</span
-            >
+            <span class="font-inter" style="color: #274b8c">{{jobNo}}</span>
           </th>
         </tr>
       </thead>
@@ -211,42 +206,44 @@
               <div class="information">
                 <div class="label">Name</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.name}}</div>
               </div>
               <div class="information">
                 <div class="label">Address</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.addressNo}}</div>
               </div>
               <div class="information">
                 <div class="label">City</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.city}}</div>
               </div>
               <div class="information">
                 <div class="label">Zip Code</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.zipCode}}</div>
               </div>
               <div class="information">
                 <div class="label">Country</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">
+                  +{{shipperAddress.dialCode.code}} {{shipperAddress.tel}}
+                </div>
               </div>
               <div class="information">
                 <div class="label">Tel</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.name}}</div>
               </div>
               <div class="information">
                 <div class="label">Email</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.email}}</div>
               </div>
               <div class="information">
                 <div class="label">Contract</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{shipperAddress.contact.name}}</div>
               </div>
             </div>
           </td>
@@ -261,47 +258,48 @@
               <div class="information">
                 <div class="label">Name</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.name}}</div>
               </div>
               <div class="information">
                 <div class="label">Address</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.addressNo}}</div>
               </div>
               <div class="information">
                 <div class="label">City</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.city}}</div>
               </div>
               <div class="information">
                 <div class="label">Zip Code</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.zipCode}}</div>
               </div>
               <div class="information">
                 <div class="label">Country</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">
+                  +{{consigneeAddress.dialCode.code}} {{consigneeAddress.tel}}
+                </div>
               </div>
               <div class="information">
                 <div class="label">Tel</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.name}}</div>
               </div>
               <div class="information">
                 <div class="label">Email</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.email}}</div>
               </div>
               <div class="information">
                 <div class="label">Contract</div>
                 <div class="semicolon">:</div>
-                <div class="data">CPL Inter</div>
+                <div class="data">{{consigneeAddress.contact.name}}</div>
               </div>
             </div>
           </td>
         </tr>
-
         <tr class="freight-detail">
           <td colspan="2" style="padding: 16px">
             <table class="font-inter" style="width: 100%; margin-top: 8px">
@@ -312,10 +310,10 @@
                 <th>DESTINATION</th>
               </tr>
               <tr>
-                <td style="text-align: center">SEA FREIGHT (FCL) (SF)</td>
-                <td style="text-align: center">FOB</td>
-                <td style="text-align: center">ฺBANGKOK / THAILAND</td>
-                <td style="text-align: center">HACHINOHE / JAPAN</td>
+                <td style="text-align: center">{{freightTermType}}</td>
+                <td style="text-align: center">{{freightTermName}}</td>
+                <td style="text-align: center">{{freightOriginal}}</td>
+                <td style="text-align: center">{{freightDestination}}</td>
               </tr>
             </table>
           </td>
@@ -387,25 +385,6 @@
                     {{/if}} {{/each}}
                   </tr>
                   {{/each}}
-                  <tr>
-                    {{#each ../columns}} {{#if (equalTo key 'totalPrice')}}
-                    <td
-                      class="text-center"
-                      style="background-color: rgb(209, 209, 209)"
-                    >
-                      200
-                    </td>
-                    {{else if (equalTo key 'unit')}}
-                    <td
-                      class="text-center"
-                      style="background-color: rgb(209, 209, 209)"
-                    >
-                      201
-                    </td>
-                    {{else}}
-                    <td></td>
-                    {{/if}} {{/each}}
-                  </tr>
                 </tbody>
               </table>
             </div>

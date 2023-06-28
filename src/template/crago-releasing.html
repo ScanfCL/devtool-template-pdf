@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        background: black;
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      .font-regular {
+        font-weight: 400;
+      }
+
+      .font-semibold {
+        font-weight: 600;
+      }
+
+      .font-bold {
+        font-weight: 700;
+      }
+      body {
+        background: white;
+        width: 21cm;
+        /* height: 29.7cm; */
+        font-family: 'Sarabun', sans-serif;
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 100%;
+        padding: 16px;
+      }
+
+      .container td {
+        width: calc(100% / 6);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .logo {
+        width: 200px;
+        height: auto;
+        margin-left: -10px;
+      }
+
+      .text-blue {
+        color: #274b8c;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .text-left {
+        text-align: left;
+      }
+
+      .text-16 {
+        font-size: 16px;
+      }
+
+      .text-12 {
+        font-size: 12px;
+      }
+
+      .text-10 {
+        font-size: 10px;
+      }
+
+      .text-9 {
+        font-size: 9px;
+      }
+
+      .text-8 {
+        font-size: 8px;
+      }
+
+      .grid {
+        display: grid;
+      }
+
+      .grid-col-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .underline {
+        border-bottom: 1px solid black;
+      }
+
+      .package-detail-table {
+        width: 100%;
+      }
+
+      .package-detail-table,
+      .package-detail-table th,
+      .package-detail-table td {
+        border-collapse: collapse;
+        border: 0.5px solid black;
+      }
+
+      .package-detail-table > thead > tr > th {
+        padding: 12px 4px;
+        font-weight: 300;
+        color: #274b8c;
+        font-weight: 400;
+        font-size: 8px;
+      }
+
+      .package-detail-table > tbody > tr > td {
+        padding: 8px 0;
+        text-align: center;
+        font-weight: 300;
+        font-size: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="container">
+      <thead>
+        <tr>
+          <th class="text-left" colspan="3">
+            <img class="logo" src="{{{imageLogo}}}" />
+          </th>
+          <th colspan="3">
+            <div class="text-blue text-16 font-regular">
+              <div class="text-right">ใบรายการส่งงาน</div>
+              <div class="text-right">CRAGO RELEASING LIST</div>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th colspan="6" class="text-left">
+            <div class="text-16 font-regular" style="margin-bottom: 8px">
+              CPL INTER-LOGISTICS CO., LTD. (HEAD OFFICE)
+            </div>
+            <div class="text-10 font-regular" style="margin-bottom: 8px">
+              168/44 PRASERT-MANUKITCH ROAD, KHLONG KUM, BUENG KUM, BANGKOK
+              10240
+            </div>
+            <div class="text-10 font-regular" style="margin-bottom: 16px">
+              TEL: 02-519-4426 FAX: 02-519-4429 URL: www.cpl-inter.com
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="text-9 text-blue font-bold" style="margin-bottom: 8px">
+              1.รายละเอียดผู้เข้ารับงาน (PICK UP DETAILS)
+            </div>
+          </td>
+        </tr>
+        <tr class="text-9">
+          <td colspan="2" class="text-blue">
+            <div class="grid grid-col-2" style="margin-bottom: 4px">
+              <div style="padding-left: 6px">วันที่และเวลา (DATE AND TIME)</div>
+              <div class="underline"></div>
+            </div>
+          </td>
+          <td colspan="2" class="text-blue">
+            <div class="grid grid-col-2" style="margin-bottom: 4px">
+              <div style="padding-left: 6px">ประเภทผู้เข้ารับงาน (TYPE)</div>
+              <div class="underline"></div>
+            </div>
+          </td>
+          <td colspan="2" class="text-blue">
+            <div class="grid grid-col-2" style="margin-bottom: 4px">
+              <div style="padding-left: 6px">
+                ชื่อผู้เข้ารับงาน (PICK UP BY)
+              </div>
+              <div class="underline"></div>
+            </div>
+          </td>
+        </tr>
+        <tr class="text-9">
+          <td colspan="2" class="text-blue">
+            <div class="grid grid-col-2" style="margin-bottom: 8px">
+              <div style="padding-left: 6px">ชื่อคนขับรถ (DRIVER NAME)</div>
+              <div class="underline"></div>
+            </div>
+          </td>
+          <td colspan="2" class="text-blue">
+            <div class="grid grid-col-2" style="margin-bottom: 8px">
+              <div style="padding-left: 6px">ทะเบียนรถ (TRUCK NO)</div>
+              <div class="underline"></div>
+            </div>
+          </td>
+          <td colspan="2" class="text-blue">
+            <div class="grid grid-col-2" style="margin-bottom: 8px">
+              <div style="padding-left: 6px">เบอร์ติดต่อ (TEL)</div>
+              <div class="underline"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="text-9 text-blue font-bold" style="margin-bottom: 12px">
+              2.รายละเอียดสินค้า (PACKAGE DETAILS)
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <table class="package-detail-table">
+              <thead>
+                <tr>
+                  <th>รหัสอ้างอิง (REFERENCE NO.)</th>
+                  <th>รหัสสินค้า (PACKAGE NO.)</th>
+                  <th>ประเภทสินค้า (PACKAGE TYPE)</th>
+                  <th>ตำแหน่งวางสินค้า (SHELF LOCATION)</th>
+                  <th>น้ำหนัก (WEIGHT)</th>
+                  <th>จำนวนคิว (CBM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="3">230200000888</td>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">230200000888</td>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">230200000888</td>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+                <tr>
+                  <td>P_CT0000000011</td>
+                  <td>CARTON</td>
+                  <td>333</td>
+                  <td>40</td>
+                  <td>0.30</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

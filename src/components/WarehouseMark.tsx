@@ -20,11 +20,35 @@ export const WarehouseMark = () => {
 
     orderNo: "001",
     saleName: "AREERAT KUMSRI",
-    customerName: "HUMUH ORERO",
+    customerName: "HUMUH ORERO HUMUH ORERO HUMUH ORERO HUMUH ORERO",
     receivedDate: "01 JUN 2023",
     totalPackages: "2",
 
     packages: [
+      {
+        itemNo: "1",
+        weight: "10", // gross weight
+        width: "10",
+        length: "10",
+        height: "10",
+        shelfLocation: "A1",
+      },
+      {
+        itemNo: "1",
+        weight: "10", // gross weight
+        width: "10",
+        length: "10",
+        height: "10",
+        shelfLocation: "A1",
+      },
+      {
+        itemNo: "1",
+        weight: "10", // gross weight
+        width: "10",
+        length: "10",
+        height: "10",
+        shelfLocation: "A1",
+      },
       {
         itemNo: "1",
         weight: "10", // gross weight

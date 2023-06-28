@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       html {
         background: black;
@@ -12,49 +19,22 @@
         margin: 0;
       }
 
-      @font-face {
-        font-family: Inter;
-        src: url("{{{fontInter}}}") format("truetype");
+      .font-bold {
+        font-weight: 700;
       }
 
-      @font-face {
-        font-family: InterBold;
-        src: url("{{{fontInterBold}}}") format("truetype");
-      }
-
-      @font-face {
-        font-family: InterSemiBold;
-        src: url("{{{fontInterSemiBold}}}") format("truetype");
-      }
-
-      @font-face {
-        font-family: InterMedium;
-        src: url("{{{fontInterMedium}}}") format("truetype");
-      }
-
-      .font-inter {
-        font-family: Inter;
-      }
-
-      .font-inter-bold {
-        font-family: InterBold;
-      }
-
-      .font-inter-semibold {
-        font-family: InterSemiBold;
-      }
-
-      .font-inter-medium {
-        font-family: InterMedium;
+      .font-medium {
+        font-weight: 500;
       }
 
       body {
         background: white;
         width: 21cm;
-        font-family: Arial, sans-serif;
+        font-family: 'Sarabun', sans-serif;
         font-size: 12px;
         margin: 0;
         padding: 0;
+        font-weight: 400;
       }
 
       .container {
@@ -104,15 +84,11 @@
           border-bottom: 2px solid black;
         "
       >
-        <div class="font-inter-bold" style="font-size: 12px">RFE no.:</div>
-        <div class="font-inter-bold" style="font-size: 20px">
-          {{{freightNo}}}
-        </div>
+        <div class="font-bold" style="font-size: 12px">RFE no.:</div>
+        <div class="font-bold" style="font-size: 20px">{{{freightNo}}}</div>
         <div>
-          <span class="font-inter-bold" style="font-size: 12px"
-            >Shipment by:</span
-          >
-          <span class="font-inter-medium" style="font-size: 12px"
+          <span class="font-bold" style="font-size: 12px">Shipment by:</span>
+          <span class="font-medium" style="font-size: 12px"
             >{{serviceTransport}}</span
           >
         </div>
@@ -122,16 +98,16 @@
           padding: 10px 0px;
           max-height: 90px;
           border-bottom: 2px solid black;
-          height: 50px;
+          height: 70px;
         "
       >
-        <div style="display: flex">
+        <div style="display: flex; height: 100%; align-items: center">
           <img
             src="{{{imageServiceTransport}}}"
             style="width: 50px; height: 50px; margin-right: 14px"
           />
           <div>
-            <div class="font-inter-bold" style="font-size: 18px">
+            <div class="font-bold" style="font-size: 18px">
               {{{symbolTypeShippingMark}}}
             </div>
             <div style="font-size: 10px; margin-top: 4px">
@@ -144,7 +120,7 @@
         style="
           display: grid;
           grid-template-columns: repeat(5, minmax(0, 1fr));
-          height: 48px;
+          height: 60px;
         "
       >
         <div
@@ -157,13 +133,10 @@
             border-right: 2px solid black;
           "
         >
-          <div
-            class="font-inter-bold"
-            style="font-size: 12px; margin-bottom: 4px"
-          >
+          <div class="font-bold" style="font-size: 12px; margin-bottom: 4px">
             PACKAGE NO.:
           </div>
-          <div class="font-inter-bold" style="font-size: 18px">
+          <div class="font-bold" style="font-size: 18px">
             {{itemNo}} OF {{{totalPackages}}}
           </div>
         </div>
@@ -178,20 +151,16 @@
           "
         >
           <div style="margin-bottom: 10px">
-            <span
-              class="font-inter-bold"
-              style="font-size: 12px; margin-right: 10px"
+            <span class="font-bold" style="font-size: 12px; margin-right: 10px"
               >WEIGHT:</span
-            ><span class="font-inter-medium" style="font-size: 10px"
+            ><span class="font-medium" style="font-size: 10px"
               >{{weight}} kgs</span
             >
           </div>
           <div>
-            <span
-              class="font-inter-bold"
-              style="font-size: 12px; margin-right: 10px"
+            <span class="font-bold" style="font-size: 12px; margin-right: 10px"
               >SIZE:</span
-            ><span class="font-inter-medium" style="font-size: 10px"
+            ><span class="font-medium" style="font-size: 10px"
               >W{{width}} L{{length}} H{{height}} cm</span
             >
           </div>

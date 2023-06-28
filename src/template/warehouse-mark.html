@@ -3,93 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <title>Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-      html {
-        background: black;
-      }
       @page {
-        size: A4;
         margin: 0;
       }
 
-      @font-face {
-        font-family: Inter;
-        src: url("{{{fontInter}}}") format("truetype");
+      .font-bold {
+        font-weight: 700;
       }
 
-      @font-face {
-        font-family: InterBold;
-        src: url("{{{fontInterBold}}}") format("truetype");
+      .font-semibold {
+        font-weight: 600;
       }
 
-      @font-face {
-        font-family: InterSemiBold;
-        src: url("{{{fontInterSemiBold}}}") format("truetype");
+      .font-medium {
+        font-weight: 500;
       }
 
-      @font-face {
-        font-family: InterMedium;
-        src: url("{{{fontInterMedium}}}") format("truetype");
-      }
-
-      @font-face {
-        font-family: InterItalic;
-        src: url("{{{fontInterItalic}}}") format("truetype");
-      }
-
-      .font-inter {
-        font-family: Inter;
-      }
-
-      .font-inter-bold {
-        font-family: InterBold;
-      }
-
-      .font-inter-semibold {
-        font-family: InterSemiBold;
-      }
-
-      .font-inter-medium {
-        font-family: InterMedium;
-      }
-
-      .font-inter-italic {
-        font-family: InterItalic;
+      .font-italic {
         font-style: italic;
       }
 
       body {
         background: white;
-        width: 21cm;
-        font-family: Arial, sans-serif;
+        width: 10cm;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
         margin: 0;
         padding: 0;
       }
 
       .container {
         position: relative;
-        padding: 12px;
+        padding: 8px;
         width: 10cm;
-        height: 7.5cm;
-        max-height: 7.5cm;
+        height: calc(7.5cm - 8px);
+        max-height: calc(7.5cm - 8px);
         border: 1px solid whitesmoke;
       }
 
-      .container:nth-child(3n) {
-        margin-bottom: 300px;
-      }
-
       .logo {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
       }
 
       .qrcode {
         position: absolute;
         top: 12px;
         right: 12px;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         background: black;
       }
 
@@ -114,26 +85,24 @@
     {{#each packages}}
     <div class="container">
       <div class="wrapper-header">
-        <img class="logo" src="{{{imageLogo}}}" />
-        <img class="qrcode" src="{{{qrCode}}}" />
+        <img class="logo" src="{{{../imageLogo}}}" />
+        <img class="qrcode" src="{{{../qrCode}}}" />
       </div>
       <div
         style="
           padding-left: 12px;
-          padding-bottom: 12px;
+          padding-bottom: 8px;
           border-bottom: 2px solid black;
         "
       >
-        <div class="font-inter-bold" style="font-size: 12px">
+        <div class="font-bold" style="font-size: 12px">
           JOB NO.:
           <span
             >{{../jobType}}{{../serviceTransport}} - {{../originalCountry}} -
             {{../destinationCountry}}</span
           >
         </div>
-        <div class="font-inter-bold" style="font-size: 20px">
-          {{{../jobNo}}}
-        </div>
+        <div class="font-bold" style="font-size: 20px">{{{../jobNo}}}</div>
       </div>
       <div style="border-bottom: 2px solid black; height: 120px">
         <div
@@ -154,49 +123,57 @@
             "
           >
             <div
-              class="font-inter-bold text-center"
+              class="font-bold text-center"
               style="font-size: 12px; margin-bottom: 8px"
             >
               SHELF LOCATION
             </div>
-            <div class="font-inter-bold text-center" style="font-size: 18px">
+            <div class="font-bold text-center" style="font-size: 18px">
               {{shelfLocation}}
             </div>
           </div>
-          <div style="grid-column: span 4 / span 4; padding: 8px 18px">
+          <div style="grid-column: span 4 / span 4; padding: 8px 0px 8px 18px">
             <div
               style="
                 display: flex;
 
                 gap: 8px;
-                margin-bottom: 10px;
+                margin-bottom: 4px;
               "
             >
               <div
-                class="font-inter-semibold text-center"
-                style="font-size: 12px; white-space: nowrap"
+                class="font-semibold text-center"
+                style="font-size: 11px; white-space: nowrap"
               >
                 ORDER NO:
               </div>
-              <div class="font-inter" style="font-size: 12px">
-                {{../orderNo}}
-              </div>
+              <div style="font-size: 11px">{{../orderNo}}</div>
             </div>
             <div
               style="
                 display: flex;
 
                 gap: 8px;
-                margin-bottom: 10px;
+                margin-bottom: 4px;
               "
             >
               <div
-                class="font-inter-semibold text-center"
-                style="font-size: 12px; white-space: nowrap"
+                class="font-semibold text-center"
+                style="font-size: 11px; white-space: nowrap"
               >
-                SALE NAME:
+                SALES NAME:
               </div>
-              <div class="font-inter" style="font-size: 12px">
+              <div
+                style="
+                  font-size: 11px;
+                  -webkit-line-clamp: 2;
+                  line-clamp: 2;
+                  overflow: hidden;
+                  text-overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                "
+              >
                 {{../saleName}}
               </div>
             </div>
@@ -205,29 +182,37 @@
                 display: flex;
 
                 gap: 8px;
-                margin-bottom: 10px;
+                margin-bottom: 4px;
               "
             >
               <div
-                class="font-inter-semibold text-center"
-                style="font-size: 12px; white-space: nowrap"
+                class="font-semibold text-center"
+                style="font-size: 11px; white-space: nowrap"
               >
                 CUSTOMER NAME:
               </div>
-              <div class="font-inter" style="font-size: 12px">
+              <div
+                style="
+                  font-size: 11px;
+                  -webkit-line-clamp: 2;
+                  line-clamp: 2;
+                  overflow: hidden;
+                  text-overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                "
+              >
                 {{../customerName}}
               </div>
             </div>
             <div style="display: flex; gap: 8px">
               <div
-                class="font-inter-semibold"
-                style="font-size: 12px; white-space: nowrap"
+                class="font-semibold"
+                style="font-size: 11px; white-space: nowrap"
               >
                 RECEIVED DATE :
               </div>
-              <div class="font-inter" style="font-size: 12px">
-                {{../receivedDate}}
-              </div>
+              <div style="font-size: 11px">{{../receivedDate}}</div>
             </div>
           </div>
         </div>
@@ -249,13 +234,10 @@
             border-right: 2px solid black;
           "
         >
-          <div
-            class="font-inter-bold"
-            style="font-size: 12px; margin-bottom: 4px"
-          >
+          <div class="font-bold" style="font-size: 12px; margin-bottom: 4px">
             PACKAGE NO.:
           </div>
-          <div class="font-inter-bold" style="font-size: 18px">
+          <div class="font-bold" style="font-size: 18px">
             {{itemNo}} OF {{{../totalPackages}}}
           </div>
         </div>
@@ -270,26 +252,22 @@
           "
         >
           <div style="margin-bottom: 10px">
-            <span
-              class="font-inter-bold"
-              style="font-size: 12px; margin-right: 10px"
+            <span class="font-bold" style="font-size: 12px; margin-right: 10px"
               >WEIGHT:</span
-            ><span class="font-inter-medium" style="font-size: 10px"
+            ><span class="font-medium" style="font-size: 10px"
               >{{weight}} kgs</span
             >
           </div>
           <div>
-            <span
-              class="font-inter-bold"
-              style="font-size: 12px; margin-right: 10px"
+            <span class="font-bold" style="font-size: 12px; margin-right: 10px"
               >SIZE:</span
-            ><span class="font-inter-medium" style="font-size: 10px"
+            ><span class="font-medium" style="font-size: 10px"
               >W{{width}} L{{length}} H{{height}} cm</span
             >
           </div>
         </div>
       </div>
-      <div class="document-no font-inter-italic">{{../documentNo}}</div>
+      <div class="document-no font-italic">{{../documentNo}}</div>
     </div>
     {{/each}}
   </body>

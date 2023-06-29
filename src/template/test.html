@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @media print {
+        thead {
+          display: table-header-group;
+        }
+        tfoot {
+          display: table-footer-group;
+        }
+
+        /* .page-footer-space {
+          opacity: 0;
+        } */
+      }
+
+      html {
+        background: transparent;
+      }
+
+      body {
+        background: white;
+        width: 21cm;
+        min-height: 29.7cm;
+        font-family: 'Noto Sans Thai', sans-serif;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .font-semibold {
+        font-weight: 600;
+      }
+
+      .font-bold {
+        font-weight: 700;
+      }
+
+      .page-header-space {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .page-footer {
+        position: fixed;
+        bottom: 16px;
+        width: 21cm;
+      }
+
+      .page-header {
+        position: fixed;
+        top: 0mm;
+        width: 21cm;
+      }
+
+      .page {
+        page-break-after: always;
+      }
+
+      .invoice-no {
+        text-align: left;
+        font-size: 20px;
+        padding-left: 16px;
+        padding-top: 16px;
+        white-space: nowrap;
+        align-self: self-end;
+      }
+
+      .proforma-type {
+        text-align: right;
+        font-size: 28px;
+        vertical-align: baseline;
+        color: #274b8c;
+        white-space: nowrap;
+      }
+
+      .information {
+        display: grid;
+        grid-template-columns: repeat(11, minmax(0, 1fr));
+        margin-bottom: 2px;
+        font-size: 12px;
+      }
+
+      .label {
+        text-align: right;
+        grid-column: span 4 / span 4;
+      }
+
+      .semicolon {
+        text-align: center;
+        grid-column: span 1 / span 1;
+      }
+
+      .data {
+        grid-column: span 6 / span 6;
+      }
+
+      .freight-table {
+        padding: 0 16px;
+      }
+
+      .freight-table > tbody > tr > th,
+      .freight-table > tbody > tr > td {
+        border: 0.5px solid black;
+      }
+
+      .item-table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+
+      .item-table > thead > tr > th {
+        border: 0.5px solid rgb(167, 167, 167);
+        padding: 4px;
+      }
+
+      .item-table > tbody > tr > td {
+        padding: 4px;
+        border: 0.5px solid rgb(167, 167, 167);
+      }
+
+      .wrapper-shipping-mark-detail {
+        display: grid;
+        padding: 8px 0;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        column-gap: 8px;
+        row-gap: 8px;
+        height: 100%;
+      }
+
+      .shipping-mark {
+        padding: 16px;
+        border: 0.5px solid rgb(167, 167, 167);
+        max-width: 250px;
+        float: right;
+        max-height: 280px;
+      }
+
+      .note-and-instruction {
+        padding: 16px;
+        border: 0.5px solid rgb(167, 167, 167);
+        max-width: 250px;
+        height: 180px;
+      }
+
+      .note-and-instruction-child {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        font-size: 10px !important;
+        margin-bottom: 4px;
+      }
+
+      .note-underline {
+        width: 100px;
+        border-bottom: 2px solid gray;
+        grid-column: span 2 / span 2;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="page-header" style="text-align: center">
+      <div>
+        <div style="display: flex; justify-content: space-between">
+          <div class="font-semibold">
+            <div class="invoice-no">
+              Invoice No :
+              <span style="color: #274b8c">{{invoiceNo}}</span>
+            </div>
+            <div style="text-align: left; font-size: 20px; padding-left: 16px">
+              Date :
+              <span style="color: #274b8c">{{date}}</span>
+            </div>
+            <div style="text-align: left; font-size: 20px; padding-left: 16px">
+              Job No :
+              <span style="color: #274b8c">{{jobNo}}</span>
+            </div>
+          </div>
+
+          <div
+            class="font-semibold proforma-type"
+            style="padding-right: 16px; padding-top: 16px"
+          >
+            {{proformaInvoiceType}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+      <div
+        style="display: flex; justify-content: space-between; padding: 0 16px"
+      >
+        <td style="padding: 16px; align-self: baseline">
+          <div class="note-and-instruction">
+            <div
+              class="font-semibold"
+              style="margin-bottom: 16px; text-align: center; font-size: 16px"
+            >
+              NOTES AND INSTRUCTION
+            </div>
+            <div class="note-and-instruction-child">
+              <div style="text-align: right; grid-column: span 2 / span 2">
+                Net Weight :
+              </div>
+              <div class="note-underline">
+                {{noteAndInstruction.totalOfNetWeight}}
+              </div>
+              <div>KGS</div>
+            </div>
+            <div class="note-and-instruction-child">
+              <div style="text-align: right; grid-column: span 2 / span 2">
+                Gross Weight :
+              </div>
+              <div class="note-underline">
+                {{noteAndInstruction.totalOfGrossWeight}}
+              </div>
+              <div>KGS</div>
+            </div>
+            <div class="note-and-instruction-child">
+              <div style="text-align: right; grid-column: span 2 / span 2">
+                Total of Package(s) :
+              </div>
+              <div class="note-underline">
+                {{noteAndInstruction.totalPackage}}
+              </div>
+              <div>PACKAGE(s)</div>
+            </div>
+            <div class="note-and-instruction-child">
+              <div style="text-align: right; grid-column: span 2 / span 2">
+                Measurement :
+              </div>
+              <div class="note-underline">
+                {{noteAndInstruction.measurement}}
+              </div>
+              <div>CBM</div>
+            </div>
+            <div class="note-and-instruction-child">
+              <div style="text-align: right; grid-column: span 2 / span 2">
+                Remark :
+              </div>
+              <div class="note-underline">{{noteAndInstruction.remark}}</div>
+              <div></div>
+            </div>
+            <div class="note-and-instruction-child" style="margin-top: 16px">
+              <div style="text-align: right; grid-column: span 2 / span 2">
+                Country of Origin :
+              </div>
+              <div class="note-underline">
+                {{noteAndInstruction.originCountry}}
+              </div>
+              <div></div>
+            </div>
+          </div>
+        </td>
+        <td style="padding: 16px">
+          <div class="shipping-mark">
+            {{#if (hasValue shippingMarkDetails)}}
+            <div
+              style="
+                max-width: 300px;
+                height: fit-content;
+                justify-self: self-end;
+                align-self: center;
+              "
+            >
+              <div
+                class="text-center font-semibold"
+                style="font-size: 16px; margin-bottom: 4px"
+              >
+                SHIPPING MARK
+              </div>
+              <div class="wrapper-shipping-mark-detail">
+                {{#each shippingMarkDetails}} {{#if (hasValue title)}}
+                <div
+                  class="font-bold"
+                  style="text-align: right; grid-column: span 2 / span 2"
+                >
+                  {{title}}:
+                </div>
+                <div style="grid-column: span 4 / span 4">{{detail}}</div>
+                {{/if}} {{/each}}
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </td>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <!--place holder for the fixed-position header-->
+            <div class="page-header-space">
+              <div style="display: flex; justify-content: space-between">
+                <div class="font-semibold">
+                  <div class="invoice-no">
+                    Invoice No :
+                    <span style="color: #274b8c">{{invoiceNo}}</span>
+                  </div>
+                  <div
+                    style="
+                      text-align: left;
+                      font-size: 20px;
+                      padding-left: 16px;
+                    "
+                  >
+                    Date :
+                    <span style="color: #274b8c">{{date}}</span>
+                  </div>
+                  <div
+                    style="
+                      text-align: left;
+                      font-size: 20px;
+                      padding-left: 16px;
+                    "
+                  >
+                    Job No :
+                    <span style="color: #274b8c">{{jobNo}}</span>
+                  </div>
+                </div>
+
+                <div
+                  class="font-semibold proforma-type"
+                  style="padding-right: 16px; padding-top: 16px"
+                >
+                  {{proformaInvoiceType}}
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td style="padding: 0 16px">
+            <div style="display: flex; width: 100%">
+              <div style="width: 100%">
+                <div class="information font-bold" style="font-size: 16px">
+                  <div class="label">SHIPPER</div>
+                  <div class="semicolon"></div>
+                  <div class="data"></div>
+                </div>
+                <div class="information">
+                  <div class="label">Name</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.name)}}
+                    {{shipperAddress.name}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Address</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.addressNo)}}
+                    {{shipperAddress.addressNo}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">City</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.city)}}
+                    {{shipperAddress.city}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Zip Code</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.zipCode)}}
+                    {{shipperAddress.zipCode}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Country</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.country.name)}}
+                    {{shipperAddress.country.name}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Tel</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperTel)}} {{shipperTel}} {{else}} -
+                    {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Email</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.email)}}
+                    {{shipperAddress.email}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Contract</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue shipperAddress.contact.name)}}
+                    {{shipperAddress.contact.name}} {{else}} - {{/if}}
+                  </div>
+                </div>
+              </div>
+              <div style="width: 100%">
+                <div class="information font-bold" style="font-size: 16px">
+                  <div class="label">CONSIGNEE</div>
+                  <div class="semicolon"></div>
+                  <div class="data"></div>
+                </div>
+                <div class="information">
+                  <div class="label">Name</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.name)}}
+                    {{consigneeAddress.name}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Address</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.addressNo)}}
+                    {{consigneeAddress.addressNo}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">City</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.city)}}
+                    {{consigneeAddress.city}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Zip Code</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.zipCode)}}
+                    {{consigneeAddress.zipCode}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Country</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.country.name)}}
+                    {{consigneeAddress.country.name}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Tel</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeTel)}} {{consigneeTel}} {{else}} -
+                    {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Email</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.email)}}
+                    {{consigneeAddress.email}} {{else}} - {{/if}}
+                  </div>
+                </div>
+                <div class="information">
+                  <div class="label">Contract</div>
+                  <div class="semicolon">:</div>
+                  <div class="data">
+                    {{#if (hasValue consigneeAddress.contact.name)}}
+                    {{consigneeAddress.contact.name}} {{else}} - {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="freight-table" style="width: 100%; margin-top: 8px">
+              <tr>
+                <th>FREIGHT TYPE</th>
+                <th>FREIGHT TERMS</th>
+                <th>ORIGINAL</th>
+                <th>DESTINATION</th>
+              </tr>
+              <tr>
+                <td style="text-align: center">{{freightTermType}}</td>
+                <td style="text-align: center">{{freightTermName}}</td>
+                <td style="text-align: center">{{freightOriginal}}</td>
+                <td style="text-align: center">{{freightDestination}}</td>
+              </tr>
+            </table>
+            <table class="item-table" style="width: 100%; margin-top: 8px">
+              <thead>
+                {{#if (isIncludes 'DescriptionEN' 'DescriptionTH'
+                shownColumns)}}
+                <tr>
+                  <th rowspan="2">No.</th>
+                  <th colspan="2">DESCRIPTION</th>
+                  {{#each columns}} {{#unless (equalTo col 'DescriptionEN'
+                  'DescriptionTH')}} {{#if (equalTo key 'totalPrice')}}
+                  <th rowspan="2" style="background-color: rgb(209, 209, 209)">
+                    {{title}}
+                  </th>
+                  {{else}}
+                  <th rowspan="2">{{title}}</th>
+                  {{/if}} {{/unless}} {{/each}}
+                </tr>
+                <tr>
+                  <th>PRODUCT NAME (EN)</th>
+                  <th>PRODUCT NAME (TH)</th>
+                </tr>
+                {{else}}
+
+                <tr>
+                  <th>No.</th>
+                  {{#each columns}} {{#if (equalTo key 'totalPrice')}}
+                  <th style="background-color: rgb(209, 209, 209)">
+                    {{title}}
+                  </th>
+                  {{else}}
+                  <th>{{title}}</th>
+                  {{/if}} {{/each}}
+                </tr>
+
+                {{/if}}
+              </thead>
+              <tbody>
+                {{#each items}}
+                <tr>
+                  <td class="text-center">{{no}}</td>
+                  {{#each ../columns}} {{#if (equalTo key 'photoId')}}
+                  <td class="text-center">
+                    {{#if (hasValue (lookup ../this 'photoUrl'))}}
+                    <img
+                      src="{{lookup ../this 'photoUrl'}}"
+                      alt="product"
+                      class="product-image"
+                    />
+                    {{else}} - {{/if}}
+                  </td>
+                  {{else if (equalTo key 'unitTypeId')}}
+                  <td class="text-center">
+                    {{#if (hasValue (lookup ../this 'unitType'))}} {{lookup
+                    ../this 'unitType'}} {{else}} - {{/if}}
+                  </td>
+                  {{else}}
+                  <td class="text-{{lookup ../../columnsTextAlign key}}">
+                    {{#if (hasValue (lookup ../this key) )}} {{lookup ../this
+                    key}} {{else}} - {{/if}}
+                  </td>
+                  {{/if}} {{/each}}
+                </tr>
+                {{/each}}
+                <tr>
+                  <td style="border: unset"></td>
+                  {{#each columns}} {{#if (equalTo key 'qty')}} {{#if (hasValue
+                  ../sumOfQty)}}
+                  <td
+                    class="text-center"
+                    style="background-color: rgb(209, 209, 209)"
+                  >
+                    {{../sumOfQty}}
+                  </td>
+                  {{else}}
+                  <td style="border: unset"></td>
+                  {{/if}} {{else if (equalTo key 'totalPrice')}} {{#if (hasValue
+                  ../sumOfTotalPrice)}}
+                  <td
+                    class="text-right"
+                    style="background-color: rgb(209, 209, 209)"
+                  >
+                    {{../sumOfTotalPrice}}
+                  </td>
+                  {{else}}
+                  <td style="border: unset"></td>
+                  {{/if}} {{else if (equalTo key 'unitPrice')}}
+                  <td class="text-center" style="border: unset">Total</td>
+                  {{else}}
+                  <td style="border: unset"></td>
+                  {{/if}} {{/each}}
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td>
+            <!--place holder for the fixed-position footer-->
+            <div class="page-footer-space">
+              <div style="display: flex; justify-content: space-between">
+                <div style="padding: 16px; align-self: baseline">
+                  <div class="note-and-instruction">
+                    <div
+                      class="font-semibold"
+                      style="
+                        margin-bottom: 16px;
+                        text-align: center;
+                        font-size: 16px;
+                      "
+                    >
+                      NOTES AND INSTRUCTION
+                    </div>
+                    <div class="note-and-instruction-child">
+                      <div
+                        style="text-align: right; grid-column: span 2 / span 2"
+                      >
+                        Net Weight :
+                      </div>
+                      <div class="note-underline">
+                        {{noteAndInstruction.totalOfNetWeight}}
+                      </div>
+                      <div>KGS</div>
+                    </div>
+                    <div class="note-and-instruction-child">
+                      <div
+                        style="text-align: right; grid-column: span 2 / span 2"
+                      >
+                        Gross Weight :
+                      </div>
+                      <div class="note-underline">
+                        {{noteAndInstruction.totalOfGrossWeight}}
+                      </div>
+                      <div>KGS</div>
+                    </div>
+                    <div class="note-and-instruction-child">
+                      <div
+                        style="text-align: right; grid-column: span 2 / span 2"
+                      >
+                        Total of Package(s) :
+                      </div>
+                      <div class="note-underline">
+                        {{noteAndInstruction.totalPackage}}
+                      </div>
+                      <div>PACKAGE(s)</div>
+                    </div>
+                    <div class="note-and-instruction-child">
+                      <div
+                        style="text-align: right; grid-column: span 2 / span 2"
+                      >
+                        Measurement :
+                      </div>
+                      <div class="note-underline">
+                        {{noteAndInstruction.measurement}}
+                      </div>
+                      <div>CBM</div>
+                    </div>
+                    <div class="note-and-instruction-child">
+                      <div
+                        style="text-align: right; grid-column: span 2 / span 2"
+                      >
+                        Remark :
+                      </div>
+                      <div class="note-underline">
+                        {{noteAndInstruction.remark}}
+                      </div>
+                      <div></div>
+                    </div>
+                    <div
+                      class="note-and-instruction-child"
+                      style="margin-top: 16px"
+                    >
+                      <div
+                        style="text-align: right; grid-column: span 2 / span 2"
+                      >
+                        Country of Origin :
+                      </div>
+                      <div class="note-underline">
+                        {{noteAndInstruction.originCountry}}
+                      </div>
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding: 16px">
+                  <div class="shipping-mark">
+                    {{#if (hasValue shippingMarkDetails)}}
+                    <div
+                      style="
+                        max-width: 300px;
+                        height: fit-content;
+                        justify-self: self-end;
+                        align-self: center;
+                      "
+                    >
+                      <div
+                        class="text-center font-semibold"
+                        style="font-size: 16px; margin-bottom: 4px"
+                      >
+                        SHIPPING MARK
+                      </div>
+                      <div class="wrapper-shipping-mark-detail">
+                        {{#each shippingMarkDetails}} {{#if (hasValue title)}}
+                        <div
+                          class="font-bold"
+                          style="
+                            text-align: right;
+                            grid-column: span 2 / span 2;
+                          "
+                        >
+                          {{title}}:
+                        </div>
+                        <div style="grid-column: span 4 / span 4">
+                          {{detail}}
+                        </div>
+                        {{/if}} {{/each}}
+                      </div>
+                    </div>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>

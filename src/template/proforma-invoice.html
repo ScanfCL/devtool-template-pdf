@@ -78,7 +78,7 @@
       .note-and-instruction {
         padding: 16px;
         border: 0.5px solid rgb(167, 167, 167);
-        max-width: 250px;
+        min-width: 250px;
         height: 180px;
       }
 
@@ -156,25 +156,37 @@
       }
 
       .wrapper-shipping-mark-detail {
-        display: grid;
-        padding: 8px 0;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        column-gap: 8px;
-        row-gap: 8px;
         height: 100%;
       }
 
       .shipping-mark {
         padding: 16px;
-        height: 148px;
+        border: 0.5px solid rgb(167, 167, 167);
+        float: right;
+        height: 180px;
+        max-width: 424px;
+      }
+
+      .footer-shadow {
+        width: 100%;
+      }
+
+      .footer {
+        display: none;
       }
 
       @media print {
+        .footer-shadow {
+          opacity: 0;
+        }
+
         .footer {
           position: fixed;
-          bottom: 16px;
+          bottom: 0px;
           width: 100%;
-          height: 250px;
+          min-height: 250px;
+          height: max-content;
+          display: block;
         }
 
         .footer > tr {
@@ -183,23 +195,6 @@
           align-items: end;
           height: 100%;
         }
-
-        .shipping-mark {
-          padding: 16px;
-          height: 200px;
-        }
-
-        .note-and-instruction {
-          padding: 16px;
-          border: 0.5px solid rgb(167, 167, 167);
-          max-width: 250px;
-          height: calc(100% - 32px);
-        }
-      }
-
-      .footer-shadow {
-        height: 250px;
-        width: 100%;
       }
     </style>
   </head>
@@ -490,8 +485,22 @@
                       </td>
                       {{else}}
                       <td style="border: unset"></td>
-                      {{/if}} {{else if (equalTo key 'unitPrice')}}
-                      <td class="text-center" style="border: unset">Total</td>
+                      {{/if}} {{else if (equalTo key 'unitTypeId')}}
+                      <td
+                        class="text-right"
+                        style="background-color: rgb(209, 209, 209)"
+                      ></td>
+                      {{else if (equalTo key 'unitPrice')}}
+                      <td
+                        class="text-right font-semibold"
+                        style="
+                          border: unset;
+                          border-bottom: 1px solid rgb(167, 167, 167);
+                          background-color: rgb(209, 209, 209);
+                        "
+                      >
+                        Total
+                      </td>
                       {{else}}
                       <td style="border: unset"></td>
                       {{/if}} {{/each}}
@@ -502,10 +511,9 @@
             </td>
           </tr>
         </tbody>
-        <tfoot class="footer-shadow"></tfoot>
-        <tfoot class="footer">
+        <tfoot class="footer-shadow">
           <tr>
-            <td style="padding: 16px; height: 200px">
+            <td style="padding: 16px; align-self: baseline">
               <div class="note-and-instruction">
                 <div
                   class="font-semibold"
@@ -576,41 +584,128 @@
                 </div>
               </div>
             </td>
-            <td class="shipping-mark">
-              {{#if (hasValue shippingMarkDetails)}}
-              <div style="height: 100%; display: flex; justify-content: end">
-                <div
-                  style="
-                    display: grid;
-                    height: 100%;
-                    border: 0.5px solid rgb(167, 167, 167);
-                    width: fit-content;
-                    padding: 0 16px;
-                  "
-                >
+            <td style="padding: 16px">
+              <div class="shipping-mark">
+                {{#if (hasValue shippingMarkDetails)}}
+                <div style="max-width: 400px; height: fit-content">
                   <div
-                    style="
-                      max-width: 300px;
-                      height: fit-content;
-                      justify-self: self-end;
-                      align-self: center;
-                    "
+                    class="text-center font-semibold"
+                    style="font-size: 16px; margin-bottom: 4px"
                   >
-                    <div class="wrapper-shipping-mark-detail">
-                      {{#each shippingMarkDetails}} {{#if (hasValue title)}}
-                      <div
-                        class="font-bold"
-                        style="text-align: right; grid-column: span 2 / span 2"
-                      >
-                        {{title}}:
+                    SHIPPING MARK
+                  </div>
+                  <div class="wrapper-shipping-mark-detail">
+                    {{#each shippingMarkDetails}} {{#if (hasValue title)}}
+                    <div style="display: flex">
+                      <div class="font-bold" style="text-align: right; flex: 1">
+                        {{title}} :
                       </div>
-                      <div style="grid-column: span 4 / span 4">{{detail}}</div>
-                      {{/if}} {{/each}}
+                      <div style="flex: 3">&nbsp{{detail}}</div>
                     </div>
+                    {{/if}} {{/each}}
                   </div>
                 </div>
+                {{/if}}
               </div>
-              {{/if}}
+            </td>
+          </tr>
+        </tfoot>
+        <tfoot class="footer">
+          <tr>
+            <td style="padding: 16px; align-self: baseline">
+              <div class="note-and-instruction">
+                <div
+                  class="font-semibold"
+                  style="
+                    margin-bottom: 16px;
+                    text-align: center;
+                    font-size: 16px;
+                  "
+                >
+                  NOTES AND INSTRUCTION
+                </div>
+                <div class="note-and-instruction-child">
+                  <div style="text-align: right; grid-column: span 2 / span 2">
+                    Net Weight :
+                  </div>
+                  <div class="note-underline">
+                    {{noteAndInstruction.totalOfNetWeight}}
+                  </div>
+                  <div>KGS</div>
+                </div>
+                <div class="note-and-instruction-child">
+                  <div style="text-align: right; grid-column: span 2 / span 2">
+                    Gross Weight :
+                  </div>
+                  <div class="note-underline">
+                    {{noteAndInstruction.totalOfGrossWeight}}
+                  </div>
+                  <div>KGS</div>
+                </div>
+                <div class="note-and-instruction-child">
+                  <div style="text-align: right; grid-column: span 2 / span 2">
+                    Total of Package(s) :
+                  </div>
+                  <div class="note-underline">
+                    {{noteAndInstruction.totalPackage}}
+                  </div>
+                  <div>PACKAGE(s)</div>
+                </div>
+                <div class="note-and-instruction-child">
+                  <div style="text-align: right; grid-column: span 2 / span 2">
+                    Measurement :
+                  </div>
+                  <div class="note-underline">
+                    {{noteAndInstruction.measurement}}
+                  </div>
+                  <div>CBM</div>
+                </div>
+                <div class="note-and-instruction-child">
+                  <div style="text-align: right; grid-column: span 2 / span 2">
+                    Remark :
+                  </div>
+                  <div class="note-underline">
+                    {{noteAndInstruction.remark}}
+                  </div>
+                  <div></div>
+                </div>
+                <div
+                  class="note-and-instruction-child"
+                  style="margin-top: 16px"
+                >
+                  <div style="text-align: right; grid-column: span 2 / span 2">
+                    Country of Origin :
+                  </div>
+                  <div class="note-underline">
+                    {{noteAndInstruction.originCountry}}
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+            </td>
+            <td style="padding: 16px">
+              <div class="shipping-mark">
+                {{#if (hasValue shippingMarkDetails)}}
+                <div style="max-width: 400px; height: fit-content">
+                  <div
+                    class="text-center font-semibold"
+                    style="font-size: 16px; margin-bottom: 4px"
+                  >
+                    SHIPPING MARK
+                  </div>
+                  <div class="wrapper-shipping-mark-detail">
+                    {{#each shippingMarkDetails}} {{#if (hasValue title)}}
+                    <div style="display: flex">
+                      <div class="font-bold" style="text-align: right; flex: 1">
+                        {{title}} :
+                      </div>
+                      <div style="flex: 3">&nbsp{{detail}}</div>
+                    </div>
+                    {{/if}} {{/each}}
+                  </div>
+                </div>
+                {{/if}}
+              </div>
             </td>
           </tr>
         </tfoot>

@@ -79,6 +79,7 @@
         padding: 16px;
         border: 0.5px solid rgb(167, 167, 167);
         min-width: 250px;
+        width: 250px;
         height: 180px;
       }
 
@@ -294,7 +295,7 @@
                   </div>
                 </div>
                 <div class="information">
-                  <div class="label">Contract</div>
+                  <div class="label">Contact</div>
                   <div class="semicolon">:</div>
                   <div class="data">
                     {{#if (hasValue shipperAddress.contact.name)}}
@@ -367,7 +368,7 @@
                   </div>
                 </div>
                 <div class="information">
-                  <div class="label">Contract</div>
+                  <div class="label">Contact</div>
                   <div class="semicolon">:</div>
                   <div class="data">
                     {{#if (hasValue consigneeAddress.contact.name)}}
@@ -378,7 +379,7 @@
             </td>
           </tr>
           <tr class="freight-detail">
-            <td colspan="2" style="padding: 16px">
+            <td colspan="2" style="padding: 0px 16px 8px 16px">
               <table style="width: 100%; margin-top: 8px">
                 <tr>
                   <th>FREIGHT TYPE</th>
@@ -413,6 +414,10 @@
                       >
                         {{title}}
                       </th>
+                      {{else if (equalTo key 'additional1')}}
+                      <th>{{../additionalColumnName1}}</th>
+                      {{else if (equalTo key 'additional2')}}
+                      <th>{{../additionalColumnName2}}</th>
                       {{else}}
                       <th rowspan="2">{{title}}</th>
                       {{/if}} {{/unless}} {{/each}}
@@ -429,6 +434,10 @@
                       <th style="background-color: rgb(209, 209, 209)">
                         {{title}}
                       </th>
+                      {{else if (equalTo key 'additional1')}}
+                      <th>{{../additionalColumnName1}}</th>
+                      {{else if (equalTo key 'additional2')}}
+                      <th>{{../additionalColumnName2}}</th>
                       {{else}}
                       <th>{{title}}</th>
                       {{/if}} {{/each}}
@@ -597,7 +606,14 @@
                   <div class="wrapper-shipping-mark-detail">
                     {{#each shippingMarkDetails}} {{#if (hasValue title)}}
                     <div style="display: flex">
-                      <div class="font-bold" style="text-align: right; flex: 1">
+                      <div
+                        class="font-bold"
+                        style="
+                          text-align: right;
+                          flex: 1;
+                          text-transform: uppercase;
+                        "
+                      >
                         {{title}} :
                       </div>
                       <div style="flex: 3">&nbsp{{detail}}</div>
@@ -696,7 +712,14 @@
                   <div class="wrapper-shipping-mark-detail">
                     {{#each shippingMarkDetails}} {{#if (hasValue title)}}
                     <div style="display: flex">
-                      <div class="font-bold" style="text-align: right; flex: 1">
+                      <div
+                        class="font-bold"
+                        style="
+                          text-align: right;
+                          flex: 1;
+                          text-transform: uppercase;
+                        "
+                      >
                         {{title}} :
                       </div>
                       <div style="flex: 3">&nbsp{{detail}}</div>

@@ -13,6 +13,7 @@
     <style>
       html {
         background: transparent;
+        font-size: 14px;
       }
 
       @page {
@@ -32,7 +33,7 @@
         background: white;
         width: 21cm;
         font-family: 'Noto Sans Thai', sans-serif;
-        font-size: 12px;
+        font-size: 0.75rem;
         margin: 0;
         padding: 0;
       }
@@ -48,7 +49,7 @@
 
       .proforma-type {
         text-align: right;
-        font-size: 28px;
+        font-size: 1.75rem;
         vertical-align: baseline;
         color: #274b8c;
         white-space: nowrap;
@@ -58,7 +59,7 @@
         display: grid;
         grid-template-columns: repeat(11, minmax(0, 1fr));
         margin-bottom: 2px;
-        font-size: 12px;
+        font-size: 0.75rem;
       }
 
       .label {
@@ -86,7 +87,7 @@
       .note-and-instruction-child {
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
-        font-size: 10px !important;
+        font-size: 0.625rem !important;
         margin-bottom: 4px;
       }
 
@@ -113,7 +114,6 @@
       }
 
       .item-table {
-        border-spacing: 0;
         border-collapse: collapse;
       }
 
@@ -123,13 +123,13 @@
       }
 
       .item-table > tbody > tr > td {
-        padding: 4px;
+        padding: 6px 4px;
         border: 0.5px solid rgb(167, 167, 167);
       }
 
       .invoice-no {
         text-align: left;
-        font-size: 20px;
+        font-size: 1.25rem;
         padding-left: 16px;
         padding-top: 16px;
         white-space: nowrap;
@@ -138,9 +138,8 @@
       .product-image {
         object-fit: scale-down;
         width: 150px;
-        height: 150px;
+        height: auto;
         min-width: 150px;
-        min-height: 150px;
         background-color: white;
       }
 
@@ -157,7 +156,10 @@
       }
 
       .wrapper-shipping-mark-detail {
-        height: 100%;
+        height: calc(100% - 32px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
       }
 
       .shipping-mark {
@@ -166,6 +168,7 @@
         float: right;
         height: 180px;
         max-width: 424px;
+        min-width: 360px;
       }
 
       .footer-shadow {
@@ -183,7 +186,7 @@
 
         .footer {
           position: fixed;
-          bottom: 0px;
+          bottom: -14px;
           width: 100%;
           min-height: 250px;
           height: max-content;
@@ -206,26 +209,36 @@
           <tr>
             <th class="invoice-no">
               Invoice No :
-              <span style="color: #274b8c">{{invoiceNo}}</span>
+              <span style="color: #274b8c; font-weight: 400"
+                >{{invoiceNo}}</span
+              >
             </th>
             <th
               rowspan="3"
               class="font-semibold proforma-type"
-              style="padding-right: 16px; padding-top: 16px"
+              style="
+                padding-right: 16px;
+                padding-top: 16px;
+                letter-spacing: -2.9px;
+              "
             >
               {{proformaInvoiceType}}
             </th>
           </tr>
           <tr>
-            <th style="text-align: left; font-size: 20px; padding-left: 16px">
+            <th
+              style="text-align: left; font-size: 1.25rem; padding-left: 16px"
+            >
               Date :
-              <span style="color: #274b8c">{{date}}</span>
+              <span style="color: #274b8c; font-weight: 400">{{date}}</span>
             </th>
           </tr>
           <tr style="height: 24px; vertical-align: baseline">
-            <th style="text-align: left; font-size: 20px; padding-left: 16px">
+            <th
+              style="text-align: left; font-size: 1.25rem; padding-left: 16px"
+            >
               Job No :
-              <span style="color: #274b8c">{{jobNo}}</span>
+              <span style="color: #274b8c; font-weight: 400">{{jobNo}}</span>
             </th>
           </tr>
         </thead>
@@ -233,7 +246,7 @@
           <tr>
             <td style="padding: 0 24px 0 48px">
               <div style="width: 100%">
-                <div class="information font-bold" style="font-size: 16px">
+                <div class="information font-bold" style="font-size: 1rem">
                   <div class="label">SHIPPER</div>
                   <div class="semicolon"></div>
                   <div class="data"></div>
@@ -306,7 +319,7 @@
             </td>
             <td style="padding: 0 24px 0 48px">
               <div style="width: 100%">
-                <div class="information font-bold" style="font-size: 16px">
+                <div class="information font-bold" style="font-size: 1rem">
                   <div class="label">CONSIGNEE</div>
                   <div class="semicolon"></div>
                   <div class="data"></div>
@@ -390,8 +403,16 @@
                 <tr>
                   <td style="text-align: center">{{freightTermType}}</td>
                   <td style="text-align: center">{{freightTermName}}</td>
-                  <td style="text-align: center">{{freightOriginal}}</td>
-                  <td style="text-align: center">{{freightDestination}}</td>
+                  <td style="text-align: center; text-transform: uppercase">
+                    {{#if (hasValue shipperAddress.city)}}
+                    {{shipperAddress.city}} {{else}} - {{/if}} /
+                    {{freightOriginal}}
+                  </td>
+                  <td style="text-align: center; text-transform: uppercase">
+                    {{#if (hasValue consigneeAddress.city)}}
+                    {{consigneeAddress.city}} {{else}} - {{/if}} /
+                    {{freightDestination}}
+                  </td>
                 </tr>
               </table>
             </td>
@@ -415,9 +436,9 @@
                         {{title}}
                       </th>
                       {{else if (equalTo key 'additional1')}}
-                      <th>{{../additionalColumnName1}}</th>
+                      <th rowspan="2">{{../additionalColumnName1}}</th>
                       {{else if (equalTo key 'additional2')}}
-                      <th>{{../additionalColumnName2}}</th>
+                      <th rowspan="2">{{../additionalColumnName2}}</th>
                       {{else}}
                       <th rowspan="2">{{title}}</th>
                       {{/if}} {{/unless}} {{/each}}
@@ -522,14 +543,14 @@
         </tbody>
         <tfoot class="footer-shadow">
           <tr>
-            <td style="padding: 16px; align-self: baseline">
+            <td style="padding: 16px; height: 246px">
               <div class="note-and-instruction">
                 <div
                   class="font-semibold"
                   style="
                     margin-bottom: 16px;
                     text-align: center;
-                    font-size: 16px;
+                    font-size: 1rem;
                   "
                 >
                   NOTES AND INSTRUCTION
@@ -559,7 +580,7 @@
                   <div class="note-underline">
                     {{noteAndInstruction.totalPackage}}
                   </div>
-                  <div>PACKAGE(s)</div>
+                  <div>{{noteAndInstruction.totalPackageUnit}}(s)</div>
                 </div>
                 <div class="note-and-instruction-child">
                   <div style="text-align: right; grid-column: span 2 / span 2">
@@ -593,13 +614,13 @@
                 </div>
               </div>
             </td>
-            <td style="padding: 16px">
+            <td style="padding: 16px; height: 246px">
               <div class="shipping-mark">
                 {{#if (hasValue shippingMarkDetails)}}
-                <div style="max-width: 400px; height: fit-content">
+                <div style="max-width: 400px; height: 100%">
                   <div
                     class="text-center font-semibold"
-                    style="font-size: 16px; margin-bottom: 4px"
+                    style="font-size: 1rem; margin-bottom: 4px"
                   >
                     SHIPPING MARK
                   </div>
@@ -628,14 +649,14 @@
         </tfoot>
         <tfoot class="footer">
           <tr>
-            <td style="padding: 16px; align-self: baseline">
+            <td style="padding: 16px; height: 246px">
               <div class="note-and-instruction">
                 <div
                   class="font-semibold"
                   style="
                     margin-bottom: 16px;
                     text-align: center;
-                    font-size: 16px;
+                    font-size: 1rem;
                   "
                 >
                   NOTES AND INSTRUCTION
@@ -665,7 +686,7 @@
                   <div class="note-underline">
                     {{noteAndInstruction.totalPackage}}
                   </div>
-                  <div>PACKAGE(s)</div>
+                  <div>{{noteAndInstruction.totalPackageUnit}}(s)</div>
                 </div>
                 <div class="note-and-instruction-child">
                   <div style="text-align: right; grid-column: span 2 / span 2">
@@ -699,13 +720,13 @@
                 </div>
               </div>
             </td>
-            <td style="padding: 16px">
+            <td style="padding: 16px; height: 246px">
               <div class="shipping-mark">
                 {{#if (hasValue shippingMarkDetails)}}
-                <div style="max-width: 400px; height: fit-content">
+                <div style="max-width: 400px; height: 100%">
                   <div
                     class="text-center font-semibold"
-                    style="font-size: 16px; margin-bottom: 4px"
+                    style="font-size: 1rem; margin-bottom: 4px"
                   >
                     SHIPPING MARK
                   </div>

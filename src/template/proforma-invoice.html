@@ -93,7 +93,7 @@
 
       .note-underline {
         width: 100px;
-        border-bottom: 2px solid gray;
+        border-bottom: 0.5px solid rgb(167, 167, 167);
         grid-column: span 2 / span 2;
         text-align: center;
       }
@@ -106,6 +106,7 @@
       .freight-detail > td > table > tbody > tr > th {
         border: 0.5px solid rgb(167, 167, 167);
         padding: 4px;
+        letter-spacing: -1px;
       }
 
       .freight-detail > td > table > tbody > tr > td {
@@ -120,6 +121,7 @@
       .item-table > thead > tr > th {
         border: 0.5px solid rgb(167, 167, 167);
         padding: 4px;
+        letter-spacing: -1px;
       }
 
       .item-table > tbody > tr > td {
@@ -153,6 +155,10 @@
 
       .text-right {
         text-align: right;
+      }
+
+      .uppercase {
+        text-transform: uppercase;
       }
 
       .wrapper-shipping-mark-detail {
@@ -219,7 +225,7 @@
               style="
                 padding-right: 16px;
                 padding-top: 16px;
-                letter-spacing: -2.9px;
+                letter-spacing: -3px;
               "
             >
               {{proformaInvoiceType}}
@@ -244,10 +250,10 @@
         </thead>
         <tbody>
           <tr>
-            <td style="padding: 0 24px 0 48px">
+            <td style="padding: 0 16px">
               <div style="width: 100%">
                 <div class="information font-bold" style="font-size: 1rem">
-                  <div class="label">SHIPPER</div>
+                  <div class="label" style="letter-spacing: -1px">SHIPPER</div>
                   <div class="semicolon"></div>
                   <div class="data"></div>
                 </div>
@@ -317,10 +323,12 @@
                 </div>
               </div>
             </td>
-            <td style="padding: 0 24px 0 48px">
+            <td style="padding: 0 16px">
               <div style="width: 100%">
                 <div class="information font-bold" style="font-size: 1rem">
-                  <div class="label">CONSIGNEE</div>
+                  <div class="label" style="letter-spacing: -1px">
+                    CONSIGNEE
+                  </div>
                   <div class="semicolon"></div>
                   <div class="data"></div>
                 </div>
@@ -470,7 +478,17 @@
                     {{#each items}}
                     <tr>
                       <td class="text-center">{{no}}</td>
-                      {{#each ../columns}} {{#if (equalTo key 'photoId')}}
+                      {{#each ../columns}} {{#if (equalTo key 'descriptionTH')}}
+                      <td class="text-{{lookup ../../columnsTextAlign key}}">
+                        {{#if (hasValue (lookup ../this key) )}} {{lookup
+                        ../this key}} {{else}} - {{/if}}
+                      </td>
+                      {{else if (equalTo key 'descriptionEN')}}
+                      <td class="text-{{lookup ../../columnsTextAlign key}}">
+                        {{#if (hasValue (lookup ../this key) )}} {{lookup
+                        ../this key}} {{else}} - {{/if}}
+                      </td>
+                      {{else if (equalTo key 'photoId')}}
                       <td class="text-center">
                         {{#if (hasValue (lookup ../this 'photoUrl'))}}
                         <img
@@ -481,12 +499,14 @@
                         {{else}} - {{/if}}
                       </td>
                       {{else if (equalTo key 'unitTypeId')}}
-                      <td class="text-center">
+                      <td class="text-center uppercase">
                         {{#if (hasValue (lookup ../this 'unitType'))}} {{lookup
                         ../this 'unitType'}} {{else}} - {{/if}}
                       </td>
                       {{else}}
-                      <td class="text-{{lookup ../../columnsTextAlign key}}">
+                      <td
+                        class="uppercase text-{{lookup ../../columnsTextAlign key}}"
+                      >
                         {{#if (hasValue (lookup ../this key) )}} {{lookup
                         ../this key}} {{else}} - {{/if}}
                       </td>
@@ -529,7 +549,7 @@
                           background-color: rgb(209, 209, 209);
                         "
                       >
-                        Total
+                        TOTAL
                       </td>
                       {{else}}
                       <td style="border: unset"></td>
@@ -551,6 +571,7 @@
                     margin-bottom: 16px;
                     text-align: center;
                     font-size: 1rem;
+                    letter-spacing: -1px;
                   "
                 >
                   NOTES AND INSTRUCTION
@@ -620,7 +641,11 @@
                 <div style="max-width: 400px; height: 100%">
                   <div
                     class="text-center font-semibold"
-                    style="font-size: 1rem; margin-bottom: 4px"
+                    style="
+                      font-size: 1rem;
+                      margin-bottom: 4px;
+                      letter-spacing: -1px;
+                    "
                   >
                     SHIPPING MARK
                   </div>

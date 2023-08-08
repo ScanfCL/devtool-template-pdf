@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Cargo Releasing</title>
+    <title>Cargo Released</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,6 +13,7 @@
       html {
         background: transparent;
       }
+
       @page {
         size: A4;
         margin: 0;
@@ -29,6 +30,7 @@
       .font-bold {
         font-weight: 700;
       }
+
       body {
         background: white;
         width: 21cm;
@@ -141,7 +143,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        margin-bottom: 12px;
+        margin-bottom: 4px;
         gap: 8px;
       }
 
@@ -171,7 +173,7 @@
         position: absolute;
         top: -16px;
         width: calc(100% - 32px);
-        padding: 0 16px;
+        padding: 0 0 0 8px;
         font-weight: 300;
         font-size: 10px;
         line-height: 16px;
@@ -191,6 +193,17 @@
         display: none;
       }
 
+      .wrapper-text-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        font-size: 10px;
+        width: 100%;
+        padding-top: 20px;
+        height: 32px;
+      }
+
       @media print {
         .footer-shadow {
           opacity: 0;
@@ -207,6 +220,7 @@
       }
     </style>
   </head>
+
   <body>
     <table class="container">
       <thead>
@@ -220,7 +234,7 @@
                 ใบงานปล่อยสินค้า
               </div>
               <div class="text-right" style="font-size: 14px">
-                CARGO RELEASING
+                CARGO RELEASED BILL
               </div>
               <div
                 class="text-right text-black"
@@ -263,12 +277,12 @@
       <tbody>
         <tr>
           <td colspan="5">
-            <div class="text-14" style="margin-bottom: 12px">
-              1.รายละเอียดผู้สร้างงาน CREATOR DETAILS
+            <div class="text-14 text-blue" style="margin-bottom: 12px">
+              1.รายละเอียดผู้สร้างงาน (CREATOR DETAILS)
             </div>
             <div class="text-10" style="display: flex; width: 100%">
               <div class="detail-field">
-                <div style="padding-left: 6px">
+                <div class="text-blue" style="padding-left: 6px">
                   วันที่สร้าง
                   <div>Date</div>
                 </div>
@@ -286,9 +300,9 @@
                 </div>
               </div>
               <div class="detail-field">
-                <div style="padding-left: 6px">
+                <div class="text-blue" style="padding-left: 6px">
                   ผู้สร้างงาน
-                  <div>Sales Name</div>
+                  <div>Name</div>
                 </div>
                 <div
                   class="wrapper-fill-text"
@@ -300,11 +314,11 @@
                   "
                 >
                   <div class="line"></div>
-                  <div class="fill-text">{{salesName}}</div>
+                  <div class="fill-text">{{createdBy}}</div>
                 </div>
               </div>
               <div class="detail-field">
-                <div style="padding-left: 6px">
+                <div class="text-blue" style="padding-left: 6px">
                   โทร
                   <div>Tel.</div>
                 </div>
@@ -323,14 +337,17 @@
               </div>
             </div>
             <div style="display: flex; width: 100%; gap: 12px">
-              <div style="flex: 1">
-                <div class="text-14" style="margin-bottom: 12px">
-                  2.รายละเอียดต้นทาง SENDER
+              <div style="flex: 5">
+                <div class="text-14 text-blue" style="margin-bottom: 12px">
+                  2.รายละเอียดต้นทาง (CARGO RELEASED DETAILS)
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
-                      วันที่เข้ารับ
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
+                      วันที่ปล่อยสินค้า
                       <div>Date</div>
                     </div>
                     <div
@@ -342,8 +359,11 @@
                     </div>
                   </div>
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
-                      เวลาเข้ารับ
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
+                      เวลาที่ปล่อยสินค้า
                       <div>Time</div>
                     </div>
                     <div
@@ -356,22 +376,33 @@
                   </div>
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
-                  <div class="detail-field" style="padding-bottom: 24px">
-                    <div style="padding-left: 6px; white-space: nowrap">
+                  <div class="detail-field">
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
                       ที่อยู่ต้นทาง
                       <div>Sender Address</div>
                     </div>
                     <div
                       class="wrapper-fill-text"
-                      style="display: flex; align-items: center; width: 100%"
+                      style="
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        margin-top: -10px;
+                      "
                     >
                       <div class="line"></div>
                       <div
                         class="line"
-                        style="position: absolute; top: 32px"
+                        style="position: absolute; top: 16px"
                       ></div>
 
-                      <div class="fill-text fill-text-address">
+                      <div
+                        class="fill-text fill-text-address"
+                        style="font-size: 0.5rem; line-height: 16px; top: -12px"
+                      >
                         {{senderDetail.address}}
                       </div>
                     </div>
@@ -379,7 +410,10 @@
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
                       ชื่อผู้ติดต่อ
                       <div>Contact</div>
                     </div>
@@ -394,7 +428,10 @@
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
                       เบอร์โทรติดต่อ
                       <div>Tel.</div>
                     </div>
@@ -409,7 +446,7 @@
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px">
+                    <div class="text-blue" style="padding-left: 6px">
                       หมายเหตุ
                       <div>Remark</div>
                     </div>
@@ -423,62 +460,34 @@
                   </div>
                 </div>
               </div>
-              <div style="flex: 1">
-                <div class="text-14" style="margin-bottom: 12px">
-                  3.รายละเอียดปลายทาง RECEIVER
+              <div style="flex: 4">
+                <div class="text-14 text-blue" style="margin-bottom: 12px">
+                  3.รายละเอียดปลายทาง (RECEIVER DETAILS)
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
-                      วันที่จัดส่ง
-                      <div>Date</div>
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
+                      ผู้เข้ารับสินค้า
+                      <div>Receiver</div>
                     </div>
                     <div
                       class="wrapper-fill-text"
                       style="display: flex; align-items: center; width: 100%"
                     >
                       <div class="line"></div>
-                      <div class="fill-text">{{receiverDetail.date}}</div>
-                    </div>
-                  </div>
-                  <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
-                      เวลาที่จัดส่ง
-                      <div>Time</div>
-                    </div>
-                    <div
-                      class="wrapper-fill-text"
-                      style="display: flex; align-items: center; width: 100%"
-                    >
-                      <div class="line"></div>
-                      <div class="fill-text">{{receiverDetail.time}}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-10" style="display: flex; width: 100%">
-                  <div class="detail-field" style="padding-bottom: 24px">
-                    <div style="padding-left: 6px; white-space: nowrap">
-                      ที่อยู่ปลายทาง
-                      <div>Receiver Address</div>
-                    </div>
-                    <div
-                      class="wrapper-fill-text"
-                      style="display: flex; align-items: center; width: 100%"
-                    >
-                      <div class="line"></div>
-                      <div
-                        class="line"
-                        style="position: absolute; top: 32px"
-                      ></div>
-                      <div class="fill-text fill-text-address">
-                        {{receiverDetail.address}}
-                      </div>
+                      <div class="fill-text">{{receiverDetail.name}}</div>
                     </div>
                   </div>
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
                       ชื่อผู้ติดต่อ
                       <div>Contact</div>
                     </div>
@@ -493,7 +502,10 @@
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px; white-space: nowrap">
+                    <div
+                      class="text-blue"
+                      style="padding-left: 6px; white-space: nowrap"
+                    >
                       เบอร์โทรติดต่อ
                       <div>Tel.</div>
                     </div>
@@ -508,7 +520,7 @@
                 </div>
                 <div class="text-10" style="display: flex; width: 100%">
                   <div class="detail-field">
-                    <div style="padding-left: 6px">
+                    <div class="text-blue" style="padding-left: 6px">
                       หมายเหตุ
                       <div>Remark</div>
                     </div>
@@ -523,12 +535,15 @@
                 </div>
               </div>
             </div>
-            <div class="text-14" style="margin-bottom: 12px">
-              4.รายละเอียดพนักงานขับรถ DRIVER DETAILS
+            <div class="text-14 text-blue" style="margin-bottom: 12px">
+              4.รายละเอียดพนักงานขับรถ (DRIVER DETAILS)
             </div>
             <div class="text-10" style="display: flex; width: 100%">
               <div class="detail-field">
-                <div style="padding-left: 6px; white-space: nowrap">
+                <div
+                  class="text-blue"
+                  style="padding-left: 6px; white-space: nowrap"
+                >
                   ชื่อพนักงานขับรถ
                   <div>Driver Name</div>
                 </div>
@@ -546,7 +561,7 @@
                 </div>
               </div>
               <div class="detail-field">
-                <div style="padding-left: 6px">
+                <div class="text-blue" style="padding-left: 6px">
                   เบอร์โทรติดต่อ
                   <div>Tel.</div>
                 </div>
@@ -564,7 +579,7 @@
                 </div>
               </div>
               <div class="detail-field">
-                <div style="padding-left: 6px">
+                <div class="text-blue" style="padding-left: 6px">
                   ทะเบียนรถ
                   <div>Truck No.</div>
                 </div>
@@ -582,144 +597,138 @@
                 </div>
               </div>
             </div>
-            <div class="text-14" style="margin-bottom: 16px">
-              5.รายละเอียดสินค้า PACKAGE DETAILS
+            <div class="text-14 text-blue" style="margin-bottom: 12px">
+              5.รายละเอียดสินค้า (PACKAGE DETAILS)
             </div>
-            <table class="package-detail-table">
-              <thead>
-                <tr>
-                  <th style="min-width: 250px">
-                    เลขที่อ้างอิง <br />
-                    Ref No.
-                  </th>
-                  <th>
-                    พนักงานขาย <br />
-                    Sales
-                  </th>
-                  <th>
-                    จำนวนหีบห่อ <br />
-                    Packages QTY
-                  </th>
-                  <th>
-                    น้ำหนัก <br />
-                    Weight
-                  </th>
-                  <th>
-                    จำนวนคิว <br />
-                    CBM
-                  </th>
-                  <th>
-                    หมายเหตุ <br />
-                    Remark
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each packageDetails}}
-                <tr>
-                  <td>{{refNo}}</td>
-                  <td>{{sales}}</td>
-                  <td>{{packageQty}}</td>
-                  <td>{{weight}}</td>
-                  <td>{{cbm}}</td>
-                  <td>{{remark}}</td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
+            <div style="min-height: 350px">
+              <table class="package-detail-table">
+                <thead>
+                  <tr>
+                    <th style="min-width: 250px">
+                      เลขที่อ้างอิง <br />
+                      Ref No.
+                    </th>
+                    <th>
+                      พนักงานขาย <br />
+                      Sales
+                    </th>
+                    <th>
+                      จำนวนหีบห่อ <br />
+                      Packages QTY
+                    </th>
+                    <th>
+                      น้ำหนัก <br />
+                      Weight
+                    </th>
+                    <th>
+                      จำนวนคิว <br />
+                      CBM
+                    </th>
+                    <th>
+                      หมายเหตุ <br />
+                      Remark
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each packageDetails}}
+                  <tr>
+                    <td>{{refNo}}</td>
+                    <td>{{sales}}</td>
+                    <td>{{packageQty}}</td>
+                    <td>{{weight}}</td>
+                    <td>{{cbm}}</td>
+                    <td>{{remark}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
             <div style="break-inside: avoid">
               <div
-                class="text-14"
+                class="text-14 text-blue"
                 style="margin-top: 12px; margin-bottom: 16px"
               >
-                6.ลงชื่อตัวบรรจง REQUIRED PRINTED NAME
+                6.ลงชื่อตัวบรรจง (REQUIRED PRINTED NAME)
               </div>
               <table class="print-name-table">
                 <tbody>
                   <tr>
                     <td>
-                      <div>
-                        <div>ผู้ส่งสินค้า</div>
-                        <div>Sender Name</div>
+                      <div
+                        style="display: flex; align-items: center; gap: 16px"
+                      >
+                        <div class="text-blue" style="white-space: nowrap">
+                          <div>ผู้ส่งสินค้า</div>
+                          <div>Sender Name</div>
+                        </div>
+                        <div class="line"></div>
                       </div>
                     </td>
                     <td>
-                      <div>
-                        <div>พนักงานขับรถ</div>
-                        <div>Truck Driver</div>
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        <div>ผู้รับสินค้า</div>
-                        <div>Receiver Name</div>
+                      <div
+                        style="display: flex; align-items: center; gap: 16px"
+                      >
+                        <div class="text-blue" style="white-space: nowrap">
+                          <div>ผู้รับสินค้า</div>
+                          <div>Receiver Name</div>
+                        </div>
+                        <div class="line"></div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div>
-                        <div>วันที่</div>
-                        <div>Date</div>
+                      <div
+                        style="display: flex; align-items: center; gap: 16px"
+                      >
+                        <div class="text-blue" style="white-space: nowrap">
+                          <div>วันที่</div>
+                          <div>Date</div>
+                        </div>
+                        <div class="line"></div>
                       </div>
                     </td>
                     <td>
-                      <div>
-                        <div>วันที่</div>
-                        <div>Date</div>
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        <div>วันที่</div>
-                        <div>Date</div>
+                      <div
+                        style="display: flex; align-items: center; gap: 16px"
+                      >
+                        <div class="text-blue" style="white-space: nowrap">
+                          <div>วันที่</div>
+                          <div>Date</div>
+                        </div>
+                        <div class="line"></div>
                       </div>
                     </td>
                   </tr>
                 </tbody>
-                <tfoot class="footer-shadow">
-                  <tr>
-                    <td colspan="3">
-                      <div
-                        style="
-                          white-space: nowrap;
-                          font-size: 10px;
-                          text-align: center;
-                          width: 100%;
-                          padding-top: 20px;
-                        "
-                      >
-                        บริษัท ซีพีแอล อินเตอร์-โลจิสติกส์ จำกัด 168/44
-                        ถนนประเสริฐมนูกิจ แขวงคลองกุ่ม เขตบึงกุ่ม กรุงเทพมหานคร
-                        10240 โทร. 02-519-4426 แฟกซ์ 02-519-4429
-                      </div>
-                    </td>
-                  </tr>
-                </tfoot>
-                <tfoot class="footer">
-                  <tr>
-                    <td colspan="3">
-                      <div
-                        style="
-                          white-space: nowrap;
-                          font-size: 10px;
-                          text-align: center;
-                          width: 100%;
-                          padding-top: 20px;
-                        "
-                      >
-                        บริษัท ซีพีแอล อินเตอร์-โลจิสติกส์ จำกัด 168/44
-                        ถนนประเสริฐมนูกิจ แขวงคลองกุ่ม เขตบึงกุ่ม กรุงเทพมหานคร
-                        10240 โทร. 02-519-4426 แฟกซ์ 02-519-4429
-                      </div>
-                    </td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
           </td>
         </tr>
       </tbody>
+      <tfoot class="footer-shadow text-blue">
+        <tr>
+          <td colspan="4">
+            <div class="wrapper-text-footer">
+              บริษัท ซีพีแอล อินเตอร์-โลจิสติกส์ จำกัด 168/44 ถนนประเสริฐมนูกิจ
+              แขวงคลองกุ่ม เขตบึงกุ่ม กรุงเทพมหานคร 10240 โทร. 02-519-4426 แฟกซ์
+              02-519-4429
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+      <tfoot class="footer text-blue">
+        <tr>
+          <td colspan="3">
+            <div class="wrapper-text-footer">
+              บริษัท ซีพีแอล อินเตอร์-โลจิสติกส์ จำกัด 168/44 ถนนประเสริฐมนูกิจ
+              แขวงคลองกุ่ม เขตบึงกุ่ม กรุงเทพมหานคร 10240 โทร. 02-519-4426 แฟกซ์
+              02-519-4429
+            </div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </body>
 </html>

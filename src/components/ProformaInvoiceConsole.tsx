@@ -1,4 +1,4 @@
-import html from '../template/proforma-invoice.html?raw';
+import html from '../template/proforma-invoice-console.html?raw';
 import test from '../template/test.html?raw';
 import proformaData from './proforma.json';
 import * as Handlebars from 'handlebars';
@@ -110,7 +110,7 @@ const columnsTextAlign = {
   additional2: 'left',
 };
 
-export const ProformaInvoice = () => {
+export const ProformaInvoiceConsole = () => {
   // let data = JSON.parse(
   //   '{"invoiceNo":"PI2306000147IMP","date":"27/06/2023","jobNo":"2306000147","proformaInvoiceType":"PROFORMA INVOICES","shipperAddress":{"id":"6476c0ef5e0f6fee796f5407","name":"BugToffy1","taxNo":"BugToffy1","addressNo":"BugToffy1","state":"BugToffy1","city":"BugToffy1","countryId":"637b11100edef821a8802947","zipCode":"BugToffy1","dialCodeId":"637b11100edef821a8802948","tel":"0877777","email":"","faxNo":"","userId":"63bb9f01ddf136b0eba536b1","agentId":null,"createdAt":"2023-05-31T03:37:19.499Z","updatedAt":"2023-05-31T03:37:19.499Z","createdById":"637b112b0edef821a88029f6","updatedById":"637b112b0edef821a88029f6","country":{"id":"637b11100edef821a8802947","name":"SUDAN","iso2":"SD","iso3":"SDN","createdAt":"2022-11-21T05:48:00.237Z","updatedAt":"2022-11-21T05:48:00.237Z","createdById":null,"updatedById":null},"user":{"id":"63bb9f01ddf136b0eba536b1","username":"63bb9f01ba459015d2a2d884","password":null,"email":"agent@catcomp.co.th","firstName":"","lastName":"","role":"Customer","branchIds":[],"chatRoomIds":[],"type":"Company","customerNo":"000094","customerPaymentType":"Cash","creditDays":0,"creditLimit":0,"creditBalance":0,"balance":84000,"expressNo":"","companyName":"CATCOMP","dialCodeId":"637b11130edef821a880295c","tel":"987654365","branch":"BKK","line":"CATCOMP OFFICIAL","facebook":"CATCOMP OFFICIAL","no":null,"warehouseId":null,"serviceTransportId":null,"freightTermId":null,"isActive":true,"lastLoginAt":null,"createdAt":"2023-01-09T04:58:41.306Z","updatedAt":"2023-06-13T04:26:51.719Z","createdById":"637b112c0edef821a88029f8","updatedById":"637b112c0edef821a88029f8"},"dialCode":{"id":"637b11100edef821a8802948","code":"249","countryId":"637b11100edef821a8802947","createdAt":"2022-11-21T05:48:00.345Z","updatedAt":"2022-11-21T05:48:00.345Z","createdById":null,"updatedById":null}},"shipperTel":"+249 877777","consigneeAddress":{"id":"6476123c5e0f6fee796f53e9","name":"BugPeem1","taxNo":"BugPeem1","addressNo":"BugPeem1","state":"BugPeem1","city":"BugPeem1","countryId":"637b11120edef821a880295b","zipCode":"BugPeem1","dialCodeId":"637b11130edef821a880295c","tel":"111111","email":"","faxNo":"","userId":"63bb9f01ddf136b0eba536b1","agentId":null,"createdAt":"2023-05-30T15:11:56.582Z","updatedAt":"2023-05-30T15:11:56.582Z","createdById":"637b112b0edef821a88029f6","updatedById":"637b112b0edef821a88029f6","country":{"id":"637b11120edef821a880295b","name":"THAILAND","iso2":"TH","iso3":"THA","createdAt":"2022-11-21T05:48:02.954Z","updatedAt":"2022-11-21T05:48:02.954Z","createdById":null,"updatedById":null},"user":{"id":"63bb9f01ddf136b0eba536b1","username":"63bb9f01ba459015d2a2d884","password":null,"email":"agent@catcomp.co.th","firstName":"","lastName":"","role":"Customer","branchIds":[],"chatRoomIds":[],"type":"Company","customerNo":"000094","customerPaymentType":"Cash","creditDays":0,"creditLimit":0,"creditBalance":0,"balance":84000,"expressNo":"","companyName":"CATCOMP","dialCodeId":"637b11130edef821a880295c","tel":"987654365","branch":"BKK","line":"CATCOMP OFFICIAL","facebook":"CATCOMP OFFICIAL","no":null,"warehouseId":null,"serviceTransportId":null,"freightTermId":null,"isActive":true,"lastLoginAt":null,"createdAt":"2023-01-09T04:58:41.306Z","updatedAt":"2023-06-13T04:26:51.719Z","createdById":"637b112c0edef821a88029f8","updatedById":"637b112c0edef821a88029f8"},"dialCode":{"id":"637b11130edef821a880295c","code":"66","countryId":"637b11120edef821a880295b","createdAt":"2022-11-21T05:48:03.065Z","updatedAt":"2022-11-21T05:48:03.065Z","createdById":null,"updatedById":null}},"consigneeTel":"+66 111111","freightTermType":"Import","freightTermName":"FOB","freightOriginal":"ARUBA","freightDestination":"THAILAND","shownColumns":["DescriptionEN","Qty","Unit","UnitPrice","TotalPrice", "Additional1", "Additional2" ],"columns":[{"title":"PRODUCT NAME (ENG)","key":"descriptionEN","col":"DescriptionEN"},{"title":"QTY","key":"qty","col":"Qty"},{"title":"UNIT","key":"unitTypeId","col":"Unit"},{"title":"UNIT PRICE (THB)","key":"unitPrice","col":"UnitPrice"},{"title":"TOTAL PRICE (THB)","key":"totalPrice","col":"TotalPrice"}, {"title":"ADDITIONAL 1","key":"additional1","col":"Additional1"}, {"title":"ADDITIONAL 2","key":"additional2","col":"Additional2"}],"items":[{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Rabbit","descriptionTH":"กระต่าย","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"50","unitPrice":"40.00","unitTypeId":"61fc05c69e0eecb23d93cfb1","no":1,"totalPrice":"2,000.00","unitType":"Pack"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Fish","descriptionTH":"ปลา","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"40","unitPrice":"50.00","unitTypeId":"61fc05c69e0eecb23d93cfaf","no":2,"totalPrice":"2,000.00","unitType":"Unit"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Rabbit","descriptionTH":"กระต่าย","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"50","unitPrice":"40.00","unitTypeId":"61fc05c69e0eecb23d93cfb1","no":3,"totalPrice":"2,000.00","unitType":"Pack"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Fish","descriptionTH":"ปลา","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"40","unitPrice":"50.00","unitTypeId":"61fc05c69e0eecb23d93cfaf","no":4,"totalPrice":"2,000.00","unitType":"Unit"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Rabbit","descriptionTH":"กระต่าย","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"50","unitPrice":"40.00","unitTypeId":"61fc05c69e0eecb23d93cfb1","no":5,"totalPrice":"2,000.00","unitType":"Pack"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Fish","descriptionTH":"ปลา","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"40","unitPrice":"50.00","unitTypeId":"61fc05c69e0eecb23d93cfaf","no":6,"totalPrice":"2,000.00","unitType":"Unit"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Rabbit","descriptionTH":"กระต่าย","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"50","unitPrice":"40.00","unitTypeId":"61fc05c69e0eecb23d93cfb1","no":7,"totalPrice":"2,000.00","unitType":"Pack"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Fish","descriptionTH":"ปลา","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"40","unitPrice":"50.00","unitTypeId":"61fc05c69e0eecb23d93cfaf","no":8,"totalPrice":"2,000.00","unitType":"Unit"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Rabbit","descriptionTH":"กระต่าย","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"50","unitPrice":"40.00","unitTypeId":"61fc05c69e0eecb23d93cfb1","no":9,"totalPrice":"2,000.00","unitType":"Pack"},{"additional1":"","additional2":"","currencyId":"62e502700246f13939983ed8","descriptionEN":"Fish","descriptionTH":"ปลา","exRate":"1","gw":30,"hsCode":"","madeFrom":"Plastic","note":"","nw":30,"photoId":null,"qty":"40","unitPrice":"50.00","unitTypeId":"61fc05c69e0eecb23d93cfaf","no":10,"totalPrice":"2,000.00","unitType":"Unit"}],"noteAndInstruction":{"totalOfNetWeight":"300.00","totalOfGrossWeight":"300.00","totalPackage":"5","measurement":"0","remark":"Test","originCountry":"ARUBA"},"shippingMarkDetails":[{"detail":"BugPeem1, BugPeem1, BugPeem1, BugPeem1, BugPeem1, THAILAND","title":"TO","type":"TO"},{"detail":"THAILAND","title":"DESTINATION","type":"DESTINATION"},{"detail":"BugPeem1","title":"CONTACT","type":"CONTACT"},{"detail":"+66 111111","title":"TEL","type":"TEL"},{"detail":null,"title":null,"type":"NO DISPLAY"},{"detail":null,"title":null,"type":"NO DISPLAY"}],"sumOfQty":450,"sumOfTotalPrice":"20,000.00"}'
   // );
@@ -138,8 +138,8 @@ export const ProformaInvoice = () => {
   //     faxNo: '',
   //     userId: '649dc884cddfc5ea1f9e0d36',
   //     agentId: null,
-  //     createdAt: '2023-06-29T18:09:11.563Z',
-  //     updatedAt: '2023-06 - 29T18:09: 11.563Z',
+  //     createdAt: "2023-06-29T18:09:11.563Z",
+  //     updatedAt: "2023-06 - 29T18:09: 11.563Z",
   //     createdById: '649dc48fcddfc5ea1f9e0d2f',
   //     updatedById: '649dc48fcddfc5ea1f9e0d2f',
   //     country: {
@@ -147,10 +147,10 @@ export const ProformaInvoice = () => {
   //       name: 'THAILAND',
   //       iso2: 'TH',
   //       iso3: 'THA',
-  //       createdAt: '2022-11-21T05:48:02.954Z',
-  //       updatedAt: '2022 - 11 - 21T05: 48:02.954Z',
+  //       createdAt: "2022-11-21T05:48:02.954Z",
+  //       updatedAt: "2022 - 11 - 21T05: 48:02.954Z",
   //       createdById: null,
-  //       updatedById: null,
+  //       updatedById: null
   //     },
   //     user: {
   //       id: '649dc884cddfc5ea1f9e0d36',
@@ -182,20 +182,20 @@ export const ProformaInvoice = () => {
   //       freightTermId: null,
   //       isActive: true,
   //       lastLoginAt: null,
-  //       createdAt: '2023-06-29T18:08:04.927Z',
-  //       updatedAt: '2023-06 - 29T18:08:04.927Z',
+  //       createdAt: "2023-06-29T18:08:04.927Z",
+  //       updatedAt: "2023-06 - 29T18:08:04.927Z",
   //       createdById: '649dc48fcddfc5ea1f9e0d2f',
-  //       updatedById: '649dc48fcddfc5ea1f9e0d2f',
+  //       updatedById: '649dc48fcddfc5ea1f9e0d2f'
   //     },
   //     dialCode: {
   //       id: '637b11130edef821a880295c',
   //       code: '66',
   //       countryId: '637b11120edef821a880295b',
-  //       createdAt: '2022-11-21T05:48:03.065Z',
-  //       updatedAt: '2022 - 11 - 21T05: 48:03.065Z',
+  //       createdAt: "2022-11-21T05:48:03.065Z",
+  //       updatedAt: "2022 - 11 - 21T05: 48:03.065Z",
   //       createdById: null,
-  //       updatedById: null,
-  //     },
+  //       updatedById: null
+  //     }
   //   },
   //   shipperTel: '+66 890890890',
   //   consigneeAddress: {
@@ -213,8 +213,8 @@ export const ProformaInvoice = () => {
   //     faxNo: '',
   //     userId: '649dc884cddfc5ea1f9e0d36',
   //     agentId: null,
-  //     createdAt: '2023-06-29T18:11:53.346Z',
-  //     updatedAt: '2023-06 - 29T18: 11: 53.346Z',
+  //     createdAt: "2023-06-29T18:11:53.346Z",
+  //     updatedAt: "2023-06 - 29T18: 11: 53.346Z",
   //     createdById: '649dc48fcddfc5ea1f9e0d2f',
   //     updatedById: '649dc48fcddfc5ea1f9e0d2f',
   //     country: {
@@ -222,10 +222,10 @@ export const ProformaInvoice = () => {
   //       name: 'SINGAPORE',
   //       iso2: 'SG',
   //       iso3: 'SGP',
-  //       createdAt: '2022-11-21T05:47:57.085Z',
-  //       updatedAt: '2022 - 11 - 21T05: 47: 57.085Z',
+  //       createdAt: "2022-11-21T05:47:57.085Z",
+  //       updatedAt: "2022 - 11 - 21T05: 47: 57.085Z",
   //       createdById: null,
-  //       updatedById: null,
+  //       updatedById: null
   //     },
   //     user: {
   //       id: '649dc884cddfc5ea1f9e0d36',
@@ -257,20 +257,20 @@ export const ProformaInvoice = () => {
   //       freightTermId: null,
   //       isActive: true,
   //       lastLoginAt: null,
-  //       createdAt: '2023-06-29T18:08:04.927Z',
-  //       updatedAt: '2023-06 - 29T18:08:04.927Z',
+  //       createdAt: "2023-06-29T18:08:04.927Z",
+  //       updatedAt: "2023-06 - 29T18:08:04.927Z",
   //       createdById: '649dc48fcddfc5ea1f9e0d2f',
-  //       updatedById: '649dc48fcddfc5ea1f9e0d2f',
+  //       updatedById: '649dc48fcddfc5ea1f9e0d2f'
   //     },
   //     dialCode: {
   //       id: '637b110d0edef821a8802932',
   //       code: '65',
   //       countryId: '637b110d0edef821a8802931',
-  //       createdAt: '2022-11-21T05:47:57.216Z',
-  //       updatedAt: '2022 - 11 - 21T05: 47: 57.216Z',
+  //       createdAt: "2022-11-21T05:47:57.216Z",
+  //       updatedAt: "2022 - 11 - 21T05: 47: 57.216Z",
   //       createdById: null,
-  //       updatedById: null,
-  //     },
+  //       updatedById: null
+  //     }
   //   },
   //   consigneeTel: '+65 65778888',
   //   freightTermType: 'EXPORT',
@@ -278,31 +278,24 @@ export const ProformaInvoice = () => {
   //   freightOriginal: 'THAILAND',
   //   freightDestination: 'SINGAPORE',
   //   shownColumns: [
-  //     'DescriptionEN',
-  //     'DescriptionTH',
-  //     'HSCode',
-  //     'MadeFrom',
-  //     'Additional1',
-  //     'Additional2',
-  //     'Photo',
-  //     'Qty',
-  //     'Unit',
-  //     'UnitPrice',
-  //     'TotalPrice',
-  //     'Nw',
-  //     'Gw',
-  //     'Note',
+  //     'DescriptionEN', 'DescriptionTH',
+  //     'HSCode', 'MadeFrom',
+  //     'Additional1', 'Additional2',
+  //     'Photo', 'Qty',
+  //     'Unit', 'UnitPrice',
+  //     'TotalPrice', 'Nw',
+  //     'Gw', 'Note'
   //   ],
   //   columns: [
   //     {
   //       title: 'PRODUCT NAME (ENG)',
   //       key: 'descriptionEN',
-  //       col: 'DescriptionEN',
+  //       col: 'DescriptionEN'
   //     },
   //     {
   //       title: 'PRODUCT NAME (THAI)',
   //       key: 'descriptionTH',
-  //       col: 'DescriptionTH',
+  //       col: 'DescriptionTH'
   //     },
   //     { title: 'HS CODE', key: 'hsCode', col: 'HSCode' },
   //     { title: 'MADE FROM', key: 'madeFrom', col: 'MadeFrom' },
@@ -315,11 +308,11 @@ export const ProformaInvoice = () => {
   //     {
   //       title: 'TOTAL PRICE (SGD)',
   //       key: 'totalPrice',
-  //       col: 'TotalPrice',
+  //       col: 'TotalPrice'
   //     },
   //     { title: 'NW', key: 'nw', col: 'Nw' },
   //     { title: 'GW', key: 'gw', col: 'Gw' },
-  //     { title: 'NOTE', key: 'note', col: 'Note' },
+  //     { title: 'NOTE', key: 'note', col: 'Note' }
   //   ],
   //   items: [
   //     {
@@ -341,8 +334,7 @@ export const ProformaInvoice = () => {
   //       no: 1,
   //       totalPrice: '20,000.00',
   //       unitType: 'Pack',
-  //       photoUrl:
-  //         'https://mycpl-v3.s3.amazonaws.com/20230630/%E2%80%94Pngtree%E2%80%94cartoon%20cat%20illuustration_8628597_1688063038304.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=3pR1gdqqvBt5HqdtLuDNUfHj4Cc%3D',
+  //       photoUrl: 'https://mycpl-v3.s3.amazonaws.com/20230630/%E2%80%94Pngtree%E2%80%94cartoon%20cat%20illuustration_8628597_1688063038304.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=3pR1gdqqvBt5HqdtLuDNUfHj4Cc%3D'
   //     },
   //     {
   //       additional1: 'test02',
@@ -363,8 +355,7 @@ export const ProformaInvoice = () => {
   //       no: 2,
   //       totalPrice: '20,000.00',
   //       unitType: 'Pack',
-  //       photoUrl:
-  //         'https://mycpl-v3.s3.amazonaws.com/20230630/cat_1688063061978.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=mCuW4vb27Klg9ewIm%2BV9l7IoYho%3D',
+  //       photoUrl: 'https://mycpl-v3.s3.amazonaws.com/20230630/cat_1688063061978.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=mCuW4vb27Klg9ewIm%2BV9l7IoYho%3D'
   //     },
   //     {
   //       additional1: 'test03',
@@ -385,8 +376,7 @@ export const ProformaInvoice = () => {
   //       no: 3,
   //       totalPrice: '20,000.00',
   //       unitType: 'Pack',
-  //       photoUrl:
-  //         'https://mycpl-v3.s3.amazonaws.com/20230630/pngegg%20%287%29_1688063087362.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=SD4lXjeLLD7mM8aLV9TsW83G9Mw%3D',
+  //       photoUrl: 'https://mycpl-v3.s3.amazonaws.com/20230630/pngegg%20%287%29_1688063087362.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=SD4lXjeLLD7mM8aLV9TsW83G9Mw%3D'
   //     },
   //     {
   //       additional1: 'test04',
@@ -407,8 +397,7 @@ export const ProformaInvoice = () => {
   //       no: 4,
   //       totalPrice: '20,000.00',
   //       unitType: 'Pack',
-  //       photoUrl:
-  //         'https://mycpl-v3.s3.amazonaws.com/20230630/pngegg%20%288%29_1688063123318.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=EchiQic7SlBpageqVaAYP2FPki8%3D',
+  //       photoUrl: 'https://mycpl-v3.s3.amazonaws.com/20230630/pngegg%20%288%29_1688063123318.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=EchiQic7SlBpageqVaAYP2FPki8%3D'
   //     },
   //     {
   //       additional1: 'test05',
@@ -429,8 +418,7 @@ export const ProformaInvoice = () => {
   //       no: 5,
   //       totalPrice: '20,000.00',
   //       unitType: 'Pack',
-  //       photoUrl:
-  //         'https://mycpl-v3.s3.amazonaws.com/20230630/pngwing.com%20%281%29_1688063139799.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=ZqurRxtFaVtsC4o6Twea39m9xQI%3D',
+  //       photoUrl: 'https://mycpl-v3.s3.amazonaws.com/20230630/pngwing.com%20%281%29_1688063139799.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=ZqurRxtFaVtsC4o6Twea39m9xQI%3D'
   //     },
   //     {
   //       additional1: 'test06',
@@ -451,9 +439,8 @@ export const ProformaInvoice = () => {
   //       no: 6,
   //       totalPrice: '20,000.00',
   //       unitType: 'Pack',
-  //       photoUrl:
-  //         'https://mycpl-v3.s3.amazonaws.com/20230630/pngegg%20%286%29_1688063174912.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=4Evr0Qip7asSCuBlERutz8okIgc%3D',
-  //     },
+  //       photoUrl: 'https://mycpl-v3.s3.amazonaws.com/20230630/pngegg%20%286%29_1688063174912.png?AWSAccessKeyId=AKIAXV4VO5AOR6Z2XTHZ&Expires=1688115908&Signature=4Evr0Qip7asSCuBlERutz8okIgc%3D'
+  //     }
   //   ],
   //   noteAndInstruction: {
   //     totalOfNetWeight: '50.00',
@@ -461,19 +448,19 @@ export const ProformaInvoice = () => {
   //     totalPackage: '1',
   //     measurement: '1.00',
   //     remark: 'Test Document',
-  //     originCountry: 'THAILAND',
+  //     originCountry: 'THAILAND'
   //   },
   //   shippingMarkDetails: [
   //     {
   //       detail: '888, SINGAPORE, SINGAPORE, 098269, SINGAPORE',
   //       title: 'TO',
-  //       type: 'TO',
+  //       type: 'TO'
   //     },
   //     { detail: 'SINGAPORE', title: 'DESTINATION', type: 'DESTINATION' },
   //     { detail: 'JIRACHAI MAHAJAK', title: 'CONTACT', type: 'CONTACT' },
   //     { detail: '+65 65778888', title: 'TEL', type: 'TEL' },
   //     { detail: 'CPL//8976//CUSTOMER', title: 'Remark', type: 'OTHER' },
-  //     { detail: 'FedEx', title: 'By Agent', type: 'OTHER' },
+  //     { detail: 'FedEx', title: 'By Agent', type: 'OTHER' }
   //   ],
   //   sumOfQty: 240,
   //   sumOfTotalPrice: '120,000.00',
@@ -491,14 +478,14 @@ export const ProformaInvoice = () => {
   //     nw: 'right',
   //     note: 'left',
   //     additional1: 'left',
-  //     additional2: 'left',
+  //     additional2: 'left'
   //   },
   //   additionalColumnName1: 'Ingredients',
-  //   additionalColumnName2: 'Manufactory',
-  // };
+  //   additionalColumnName2: 'Manufactory'
+  // }
   // console.log('proformaData', proformaData)
   const data = proformaData;
-  // console.log('data', data);
+  console.log('data', data);
   const template = Handlebars.compile(html);
   // const templateTest = Handlebars.compile(test);
   const htmlString = template(data);
